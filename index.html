@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<!-- mobile-first：手機優先閱讀 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#1f3d2e" />
+<title>2026 峴港・會安 5 天 4 夜旅行手冊</title>
+<style>
+  /* =========================================================
+     色彩變數（要改配色從這裡改即可）
+     米色 / 奶油白 / 墨綠 / 深咖啡 / 金色
+     ========================================================= */
+  :root{
+    --cream:#f7f2e9;        /* 奶油白底 */
+    --cream-card:#fffdf8;   /* 卡片底 */
+    --beige:#ece3d2;        /* 米色 */
+    --green:#1f3d2e;        /* 墨綠 */
+    --green-soft:#34543f;   /* 淺墨綠 */
+    --brown:#5b4636;        /* 深咖啡 */
+    --gold:#b9912f;         /* 金色點綴 */
+    --gold-soft:#d8b765;
+    --text:#332c22;         /* 主文字 */
+    --text-soft:#6f6453;    /* 次要文字 */
+    --line:#e3d8c4;         /* 分隔線 */
+    --shadow:0 10px 30px rgba(60,45,25,.10);
+    --shadow-sm:0 4px 14px rgba(60,45,25,.08);
+    --radius:20px;
+    --radius-sm:14px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC",
+      "Noto Sans TC","Microsoft JhengHei",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--text);
+    background:var(--cream);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* 錨點定位時避免被 sticky nav 蓋住 */
+  section{scroll-margin-top:72px;}
+
+  .wrap{max-width:720px;margin:0 auto;padding:0 18px;}
+
+  h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:.3px;}
+  p{margin:.4em 0;}
+  a{color:inherit;}
+
+  /* 小標籤（金線英文小字） */
+  .eyebrow{
+    font-size:12px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--gold);font-weight:600;
+  }
+
+  /* =========================================================
+     Hero / 封面
+     ========================================================= */
+  .hero{
+    position:relative;
+    /* 最上層金色光暈 + 墨綠漸層（半透明），最底層為飯店實景照片 */
+    background:
+      radial-gradient(140% 90% at 80% -10%, rgba(184,145,47,.22), transparent 55%),
+      linear-gradient(160deg, rgba(35,67,52,.86) 0%, rgba(31,61,46,.90) 45%, rgba(22,41,31,.95) 100%),
+      #16291f
+        url("https://commons.wikimedia.org/wiki/Special:FilePath/Danang%20Sun%20Peninsula%20Resort%20-%20Da%20Nang,%20Vietnam%20-%20DSC02299.JPG?width=1200")
+        center/cover no-repeat;
+    color:#f4ecdb;
+    padding:64px 22px 56px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;left:50%;bottom:26px;transform:translateX(-50%);
+    width:46px;height:1px;background:var(--gold-soft);opacity:.7;
+  }
+  .hero .eyebrow{color:var(--gold-soft);}
+  .hero h1{
+    font-size:30px;line-height:1.3;margin:14px 0 10px;color:#fdf8ee;
+  }
+  .hero .sub{
+    font-size:15px;color:#d8cdb4;margin-bottom:18px;
+  }
+  .hero .lead{
+    font-size:14px;color:#cdc1a6;max-width:430px;margin:0 auto 22px;
+  }
+  .hero .tagline{
+    display:inline-block;
+    border:1px solid rgba(216,183,101,.5);
+    border-radius:999px;
+    padding:8px 20px;
+    font-size:14px;letter-spacing:6px;
+    color:var(--gold-soft);
+  }
+
+  /* =========================================================
+     Sticky 導覽列
+     ========================================================= */
+  nav.topnav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(247,242,233,.94);
+    backdrop-filter:saturate(150%) blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.topnav ul{
+    list-style:none;margin:0;padding:8px 12px;
+    display:flex;gap:8px;overflow-x:auto;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  nav.topnav ul::-webkit-scrollbar{display:none;}
+  nav.topnav a{
+    white-space:nowrap;text-decoration:none;
+    font-size:13px;color:var(--green);
+    padding:7px 13px;border-radius:999px;
+    background:var(--cream-card);border:1px solid var(--line);
+  }
+  nav.topnav a:active{background:var(--beige);}
+
+  /* =========================================================
+     區塊通用
+     ========================================================= */
+  .block{padding:38px 0 10px;}
+  .block-title{
+    display:flex;flex-direction:column;gap:4px;margin-bottom:18px;
+  }
+  .block-title h2{font-size:23px;color:var(--green);}
+  .block-title .desc{font-size:14px;color:var(--text-soft);}
+
+  /* 卡片 */
+  .card{
+    background:var(--cream-card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+    padding:20px;margin-bottom:16px;
+  }
+
+  /* 重點 highlight box */
+  .highlight{
+    background:linear-gradient(135deg,#f3 ,#fff);
+    background:#f4efe2;
+    border-left:4px solid var(--gold);
+    border-radius:var(--radius-sm);
+    padding:14px 16px;margin:14px 0;
+    font-size:14.5px;color:var(--brown);
+  }
+  .highlight h4{
+    font-size:12px;letter-spacing:2px;color:var(--gold);
+    text-transform:uppercase;margin-bottom:6px;
+  }
+
+  /* 領隊提醒 / 注意事項 小盒 */
+  .note{
+    background:#fbf7ee;border:1px dashed var(--line);
+    border-radius:var(--radius-sm);padding:10px 13px;margin:8px 0;
+    font-size:13.5px;color:var(--text-soft);
+  }
+  .note strong{color:var(--brown);}
+
+  /* 總覽表 */
+  table.overview{
+    width:100%;border-collapse:collapse;font-size:13.5px;
+    background:var(--cream-card);border-radius:var(--radius-sm);overflow:hidden;
+  }
+  table.overview th,table.overview td{
+    text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  table.overview th{background:var(--beige);color:var(--green);font-weight:600;}
+  table.overview tr:last-child td{border-bottom:none;}
+  table.overview td:first-child{white-space:nowrap;color:var(--brown);font-weight:600;}
+
+  /* 每日主題 grid */
+  .theme-grid{display:grid;gap:10px;}
+  .theme-grid .tline{
+    display:flex;gap:12px;align-items:baseline;
+    padding:10px 14px;background:var(--cream-card);
+    border:1px solid var(--line);border-radius:var(--radius-sm);
+  }
+  .theme-grid .tline .d{color:var(--gold);font-weight:700;font-size:13px;min-width:46px;}
+  .theme-grid .tline .t{font-size:14px;}
+
+  /* =========================================================
+     Lounge 建議標籤
+     ========================================================= */
+  .tag{
+    display:inline-block;font-size:12px;font-weight:700;letter-spacing:1px;
+    padding:3px 11px;border-radius:999px;margin-left:6px;vertical-align:middle;
+  }
+  .tag-must{background:#1f3d2e;color:#f0e6c8;}        /* 必用 */
+  .tag-rec{background:#b9912f;color:#fff;}            /* 推薦 */
+  .tag-opt{background:#e7ddc8;color:#5b4636;}         /* 可選 */
+  .tag-no{background:#efe7e0;color:#9b7d6b;}          /* 不建議 */
+
+  .lounge-day{
+    display:flex;justify-content:space-between;align-items:center;
+    gap:10px;padding:11px 0;border-bottom:1px solid var(--line);
+  }
+  .lounge-day:last-child{border-bottom:none;}
+  .lounge-day .ld-name{font-weight:600;color:var(--green);}
+  .lounge-times li{margin:4px 0;font-size:13.5px;color:var(--text-soft);}
+
+  /* =========================================================
+     Day 卡片 + 時間軸
+     ========================================================= */
+  .day-card{padding:22px;}
+  .day-head{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;
+    border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:4px;
+  }
+  .day-head .day-no{
+    font-size:12px;letter-spacing:2px;color:var(--gold);font-weight:700;
+  }
+  .day-head .day-date{font-size:13px;color:var(--text-soft);}
+  .day-head h3{flex-basis:100%;font-size:19px;color:var(--green);margin-top:4px;}
+
+  /* 時間軸 */
+  .timeline{list-style:none;margin:14px 0 0;padding:0;position:relative;}
+  .timeline::before{
+    content:"";position:absolute;left:7px;top:6px;bottom:6px;
+    width:2px;background:var(--line);
+  }
+  .timeline li{
+    position:relative;padding:0 0 16px 28px;
+  }
+  .timeline li::before{
+    content:"";position:absolute;left:1px;top:5px;
+    width:13px;height:13px;border-radius:50%;
+    background:var(--cream-card);border:2px solid var(--gold);
+  }
+  .timeline .tl-time{font-size:13px;font-weight:700;color:var(--brown);}
+  .timeline .tl-text{font-size:14.5px;}
+
+  /* 地點介紹小卡 */
+  .place{
+    background:#fbf7ee;border:1px solid var(--line);
+    border-radius:var(--radius-sm);padding:14px;margin:10px 0;
+  }
+  /* 地點圖片區（實景圖或風格化版位） */
+  .place-img{
+    position:relative;height:170px;margin-bottom:12px;
+    border-radius:12px;overflow:hidden;
+    background:linear-gradient(135deg,var(--green-soft),var(--green));
+    display:flex;align-items:center;justify-content:center;
+  }
+  .place-img img{
+    width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1;
+  }
+  /* 風格化版位文字（實景圖載入失敗時也會顯示作為後備） */
+  .place-img .ph-label{
+    position:absolute;z-index:0;text-align:center;color:var(--gold-soft);
+    letter-spacing:3px;font-size:13px;padding:0 16px;text-transform:uppercase;
+  }
+  .place-img .ph-label small{
+    display:block;letter-spacing:1px;font-size:11px;color:#cdc1a6;
+    text-transform:none;margin-top:4px;
+  }
+  .place h4{font-size:15.5px;color:var(--green);margin-bottom:4px;}
+  .place .one-liner{font-size:14px;color:var(--text);margin-bottom:8px;}
+  .place .meta{font-size:13px;color:var(--text-soft);margin:3px 0;}
+  .place .meta b{color:var(--brown);font-weight:600;}
+  .booking-yes{color:#a4671f;font-weight:700;}
+  .booking-no{color:var(--green-soft);font-weight:600;}
+
+  /* 地圖按鈕 */
+  .map-btn{
+    display:inline-flex;align-items:center;gap:6px;margin-top:10px;
+    background:var(--green);color:#f3ecd9;border:none;cursor:pointer;
+    font-size:13px;font-weight:600;letter-spacing:.5px;
+    padding:9px 16px;border-radius:999px;
+    box-shadow:var(--shadow-sm);
+  }
+  .map-btn:active{background:var(--green-soft);}
+  .map-btn::before{content:"📍";font-size:13px;}
+
+  /* =========================================================
+     Checklist
+     ========================================================= */
+  .check-group{margin-bottom:14px;}
+  .check-group h4{
+    font-size:14px;color:var(--gold);letter-spacing:1px;
+    margin:14px 0 8px;text-transform:uppercase;
+  }
+  .check-item{
+    display:flex;gap:11px;align-items:flex-start;
+    padding:11px 13px;margin-bottom:8px;
+    background:var(--cream-card);border:1px solid var(--line);
+    border-radius:var(--radius-sm);cursor:pointer;font-size:14px;
+  }
+  .check-item input{
+    appearance:none;-webkit-appearance:none;
+    min-width:20px;height:20px;margin-top:1px;
+    border:2px solid var(--gold);border-radius:6px;
+    background:var(--cream-card);cursor:pointer;position:relative;
+  }
+  .check-item input:checked{background:var(--gold);border-color:var(--gold);}
+  .check-item input:checked::after{
+    content:"✓";position:absolute;left:3px;top:-2px;
+    color:#fff;font-size:14px;font-weight:700;
+  }
+  .check-item input:checked + span{color:var(--text-soft);text-decoration:line-through;}
+
+  /* =========================================================
+     Not Included
+     ========================================================= */
+  .skip-item{
+    background:var(--cream-card);border:1px solid var(--line);
+    border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:10px;
+  }
+  .skip-item h4{color:var(--brown);font-size:15px;margin-bottom:4px;}
+  .skip-item h4 .x{color:#b06a4f;margin-right:6px;}
+  .skip-item p{font-size:13.5px;color:var(--text-soft);}
+
+  /* =========================================================
+     Tips
+     ========================================================= */
+  .tip-card h4{color:var(--green);font-size:16px;margin-bottom:6px;}
+  .tip-card ul{margin:6px 0 0;padding-left:20px;}
+  .tip-card li{font-size:14px;margin:5px 0;color:var(--text);}
+
+  /* =========================================================
+     回到頂部按鈕
+     ========================================================= */
+  #toTop{
+    position:fixed;right:16px;bottom:18px;z-index:60;
+    width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;
+    background:var(--green);color:var(--gold-soft);font-size:18px;
+    box-shadow:var(--shadow);opacity:0;pointer-events:none;
+    transition:opacity .25s ease;
+  }
+  #toTop.show{opacity:1;pointer-events:auto;}
+
+  /* Footer */
+  footer{
+    text-align:center;padding:36px 18px 48px;color:var(--text-soft);
+    font-size:12.5px;
+  }
+  footer .line{width:40px;height:1px;background:var(--gold-soft);margin:0 auto 14px;}
+
+  /* 桌機微調 */
+  @media (min-width:760px){
+    .hero h1{font-size:38px;}
+    .block{padding:48px 0 10px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ========================= Hero / 封面 ========================= -->
+<header class="hero" id="top">
+  <div class="eyebrow">Central Vietnam · Honeymoon Slow Travel</div>
+  <h1>2026 峴港・會安<br>5 天 4 夜旅行手冊</h1>
+  <p class="sub">InterContinental Danang Sun Peninsula Resort｜6/28–7/2</p>
+  <p class="lead">峴港洲際慢旅行、米其林小吃、會安夜色、La Maison 1888 正式晚餐。</p>
+  <span class="tagline">慢・舒服・有質感</span>
+</header>
+
+<!-- ========================= Sticky Navigation ========================= -->
+<nav class="topnav">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#lounge">Lounge</a></li>
+    <li><a href="#day1">Day 1</a></li>
+    <li><a href="#day2">Day 2</a></li>
+    <li><a href="#day3">Day 3</a></li>
+    <li><a href="#day4">Day 4</a></li>
+    <li><a href="#day5">Day 5</a></li>
+    <li><a href="#reservations">Reservations</a></li>
+    <li><a href="#notincluded">Not Included</a></li>
+    <li><a href="#tips">Tips</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+
+  <!-- ========================= Overview ========================= -->
+  <section id="overview" class="block">
+    <div class="block-title">
+      <span class="eyebrow">01 · Overview</span>
+      <h2>旅行總覽</h2>
+      <span class="desc">兩人類蜜月型奢華慢旅行</span>
+    </div>
+
+    <div class="card">
+      <p>這是一趟兩人類蜜月型奢華慢旅行。主軸是<strong>峴港洲際度假村</strong>、峴港市區精華小吃、會安夜色，以及 <strong>La Maison 1888</strong> 正式晚餐。</p>
+      <p>旅客怕熱、怕累，不想把行程排太滿。行程刻意避免太熱、太趕、太消耗體力。<strong>住宿飯店本身就是目的地</strong>，不只是睡覺的地方。</p>
+      <div class="highlight">
+        <h4>整體提醒</h4>
+        6 月底到 7 月初峴港偏熱，白天戶外行程盡量少。每天不要排太滿。交通時間以當日路況為準。出發前 3–5 天請再次確認餐廳訂位與營業狀態。使用 IHG Lounge Pass 時，入住時需確認適用方式。
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:16px;color:var(--green);margin-bottom:10px;">總覽表</h3>
+      <table class="overview">
+        <thead>
+          <tr><th>日期</th><th>主題</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>6/28 日</td><td>抵達峴港，進入度假模式</td></tr>
+          <tr><td>6/29 一</td><td>峴港市區精華：粉紅教堂、米其林小吃、越式咖啡</td></tr>
+          <tr><td>6/30 二</td><td>飯店慢活，傍晚前往會安</td></tr>
+          <tr><td>7/1 三</td><td>飯店完整度假日 + La Maison 1888</td></tr>
+          <tr><td>7/2 四</td><td>回程日</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:16px;color:var(--green);margin-bottom:10px;">每天主題</h3>
+      <div class="theme-grid">
+        <div class="tline"><span class="d">Day 1</span><span class="t">抵達、確認 Lounge、welcome drink，進入度假模式</span></div>
+        <div class="tline"><span class="d">Day 2</span><span class="t">市區短而順的小吃日，下午回飯店休息</span></div>
+        <div class="tline"><span class="d">Day 3</span><span class="t">飯店慢活，黃昏到夜晚的會安</span></div>
+        <div class="tline"><span class="d">Day 4</span><span class="t">整趟高潮：度假日 + 米其林一星法餐</span></div>
+        <div class="tline"><span class="d">Day 5</span><span class="t">早班機回程，抓寬時間</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= Club Lounge ========================= -->
+  <section id="lounge" class="block">
+    <div class="block-title">
+      <span class="eyebrow">02 · Club InterContinental</span>
+      <h2>Club Lounge 使用攻略</h2>
+      <span class="desc">IHG Lounge Pass / Annual Lounge Membership</span>
+    </div>
+
+    <div class="card">
+      <p>旅客持有 <strong>IHG Lounge Pass / Annual Lounge Membership</strong>。入住時需請飯店確認本次住宿是否可使用，以及是否適用本人 + 1 位同行者。</p>
+      <div class="highlight">
+        <h4>參考時段（實際以飯店現場公告為準）</h4>
+        Breakfast｜07:00–11:00<br>
+        Afternoon Tea｜14:30–16:30<br>
+        Evening Cocktails &amp; Canapés｜17:30–19:30
+      </div>
+      <div class="note">
+        <strong>使用策略：</strong>不要每天硬吃滿，避免影響正式餐廳體驗。Lounge 最適合作為抵達日 welcome drink、下午茶休息站、輕晚餐替代。7/1 La Maison 1888 當天不要在 evening cocktails 吃太多；7/2 早班機改請飯店準備早餐盒。
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:16px;color:var(--green);margin-bottom:6px;">每日 Lounge 建議</h3>
+
+      <div class="lounge-day">
+        <span class="ld-name">Day 1｜6/28</span>
+        <span><span class="tag tag-must">必用</span><span class="tag tag-rec">推薦</span></span>
+      </div>
+      <ul class="lounge-times">
+        <li>18:30–19:15 若 check-in 完且 Lounge Pass 確認可用，享用 evening cocktails &amp; canapés。</li>
+        <li>作為 welcome drink 與輕食，Citron 改為備案或輕晚餐。</li>
+        <li>若抵達後很累，Lounge 後可直接休息。</li>
+      </ul>
+
+      <div class="lounge-day">
+        <span class="ld-name">Day 2｜6/29</span>
+        <span><span class="tag tag-rec">推薦</span></span>
+      </div>
+      <ul class="lounge-times">
+        <li>15:30–16:15 市區小吃回飯店後，享用 afternoon tea。</li>
+        <li>晚上不必再吃太正式，可選 Terra Mare、Long Bar，或直接簡單休息。</li>
+      </ul>
+
+      <div class="lounge-day">
+        <span class="ld-name">Day 3｜6/30</span>
+        <span><span class="tag tag-must">必用</span></span>
+      </div>
+      <ul class="lounge-times">
+        <li>14:30–15:05 出發會安前，安排 afternoon tea。</li>
+        <li>Lounge Pass 最推薦使用時機，補充體力後 15:30 出發，不影響 18:00 Mango Mango。</li>
+      </ul>
+
+      <div class="lounge-day">
+        <span class="ld-name">Day 4｜7/1</span>
+        <span><span class="tag tag-opt">可選</span></span>
+      </div>
+      <ul class="lounge-times">
+        <li>早餐可選 Club Lounge breakfast，環境通常比主餐廳安靜。</li>
+        <li>14:30–15:30 可少量享用 afternoon tea。</li>
+        <li>不建議完整享用 evening cocktails（晚上有 La Maison 1888）；想體驗最多 17:30 喝一杯，18:00 離開。</li>
+      </ul>
+
+      <div class="lounge-day">
+        <span class="ld-name">Day 5｜7/2</span>
+        <span><span class="tag tag-no">不建議</span></span>
+      </div>
+      <ul class="lounge-times">
+        <li>10:00 起飛，早上時間較緊，不建議硬排 Lounge breakfast。</li>
+        <li>前一晚請飯店協助安排早餐盒或簡單早餐。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========================= Day 1 ========================= -->
+  <section id="day1" class="block">
+    <article class="card day-card">
+      <div class="day-head">
+        <span class="day-no">Day 1</span>
+        <span class="day-date">6/28（日）</span>
+        <h3>抵達峴港，進入度假模式</h3>
+      </div>
+
+      <div class="highlight">
+        <h4>今日重點</h4>
+        抵達後不要衝會安，也不要進市區。先確認 Lounge Pass，若可用就先到 Club Lounge 享用 welcome drink / evening cocktails，正式進入度假模式。
+      </div>
+
+      <div class="note"><strong>Lounge 建議：</strong>
+        <span class="tag tag-must">必用</span><span class="tag tag-rec">推薦</span>　Lounge 作為 welcome drink 與輕食，Citron 改備案。
+      </div>
+
+      <!-- 時間軸 -->
+      <ul class="timeline">
+        <li><div class="tl-time">16:30</div><div class="tl-text">抵達峴港機場</div></li>
+        <li><div class="tl-time">17:15–18:00</div><div class="tl-text">已訂機場接送，前往 InterContinental Danang</div></li>
+        <li><div class="tl-time">18:00–19:00</div><div class="tl-text">Check-in、整理行李、熟悉飯店、確認 Lounge Pass</div></li>
+        <li><div class="tl-time">18:30–19:15</div><div class="tl-text">若來得及，Club Lounge evening cocktails &amp; canapés</div></li>
+        <li><div class="tl-time">19:45–20:00</div><div class="tl-text">視胃口選擇 Citron 輕晚餐，或直接回房休息</div></li>
+        <li><div class="tl-time">晚上</div><div class="tl-text">早點休息，不再外出</div></li>
+      </ul>
+
+      <!-- 地點介紹 -->
+      <div class="place">
+        <!-- 實景圖：Wikimedia Commons。載入失敗時自動顯示後備色塊文字 -->
+        <div class="place-img">
+          <span class="ph-label">InterContinental Danang<small>Sơn Trà Peninsula</small></span>
+          <img loading="lazy" alt="InterContinental Danang Sun Peninsula Resort"
+               onerror="this.style.display='none'"
+               src="https://commons.wikimedia.org/wiki/Special:FilePath/Danang%20Sun%20Peninsula%20Resort%20-%20Da%20Nang,%20Vietnam%20-%20DSC02299.JPG?width=800">
+        </div>
+        <h4>InterContinental Danang Sun Peninsula Resort</h4>
+        <p class="one-liner">飯店本身就是目的地，位在 Sơn Trà 半島，適合慢慢待、慢慢拍照、慢慢吃飯。</p>
+        <p class="meta"><b>領隊提醒：</b>第一天不要衝會安或市區，抵達後直接享受飯店最舒服。</p>
+        <p class="meta"><b>訂位：</b><span class="booking-yes">建議請飯店協助確認晚餐與 Lounge 使用方式</span></p>
+        <button class="map-btn" data-place="InterContinental Danang Sun Peninsula Resort">開啟地圖</button>
+      </div>
+
+      <div class="place">
+        <!-- 風格化版位（無公開實景來源），要換實景照片把 ph-label 換成 <img> 即可 -->
+        <div class="place-img"><span class="ph-label">Club InterContinental<small>IHG Lounge</small></span></div>
+        <h4>Club InterContinental</h4>
+        <p class="one-liner">使用 IHG Lounge Pass 的核心空間，可作為 welcome drink、下午茶或輕晚餐替代。</p>
+        <p class="meta"><b>領隊提醒：</b>入住時先確認 Lounge Pass 是否可用、是否包含同行者。</p>
+        <p class="meta"><b>訂位：</b>通常不需訂位，但需確認使用資格與時段。</p>
+        <button class="map-btn" data-place="Club InterContinental Danang">開啟地圖</button>
+      </div>
+
+      <div class="place">
+        <div class="place-img"><span class="ph-label">Citron<small>Vietnamese Cuisine</small></span></div>
+        <h4>Citron</h4>
+        <p class="one-liner">飯店內越南料理餐廳，適合抵達日第一餐。</p>
+        <p class="meta"><b>領隊提醒：</b>若 Lounge 已吃得差不多，Citron 可改成備案或只點輕食。</p>
+        <p class="meta"><b>訂位：</b><span class="booking-yes">建議訂 19:30 或 20:00，2 位</span></p>
+        <button class="map-btn" data-place="Citron InterContinental Danang">開啟地圖</button>
+      </div>
+
+      <div class="place">
+        <div class="place-img"><span class="ph-label">Terra Mare<small>Seaside Italian</small></span></div>
+        <h4>Terra Mare</h4>
+        <p class="one-liner">飯店海邊義式餐廳，氣氛比較輕鬆，有度假感。</p>
+        <p class="meta"><b>領隊提醒：</b>若抵達後想要海邊氣氛，可把 Citron 換成 Terra Mare。</p>
+        <p class="meta"><b>訂位：</b>建議請飯店確認。</p>
+        <button class="map-btn" data-place="Terra Mare InterContinental Danang">開啟地圖</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- ========================= Day 2 ========================= -->
+  <section id="day2" class="block">
+    <article class="card day-card">
+      <div class="day-head">
+        <span class="day-no">Day 2</span>
+        <span class="day-date">6/29（一）</span>
+        <h3>峴港市區精華：粉紅教堂、米其林小吃、越式咖啡</h3>
+      </div>
+
+      <div class="highlight">
+        <h4>今日重點</h4>
+        這天是唯一安排峴港市區精華的日子。重點是短、順、舒服：粉紅教堂外觀拍照、Bún Chả Cá Hờn、Cộng Cà Phê、Bếp Cuốn，下午回飯店休息，再用 Lounge afternoon tea 收尾。
+      </div>
+
+      <div class="note"><strong>Lounge 建議：</strong>
+        <span class="tag tag-rec">推薦</span>　15:30–16:15 回飯店後享用 afternoon tea。中午已吃過小吃與午餐，晚上不需再排正式大餐。
+      </div>
+
+      <ul class="timeline">
+        <li><div class="tl-time">08:30–09:45</div><div class="tl-text">飯店早餐</div></li>
+        <li><div class="tl-time">10:30</div><div class="tl-text">從飯店出發前往峴港市區</div></li>
+        <li><div class="tl-time">11:05–11:20</div><div class="tl-text">Da Nang Cathedral / Pink Church 外觀拍照</div></li>
+        <li><div class="tl-time">11:35–12:10</div><div class="tl-text">Bún Chả Cá Hờn 魚餅米粉湯</div></li>
+        <li><div class="tl-time">12:25–13:00</div><div class="tl-text">Cộng Cà Phê Bạch Đằng 椰子咖啡、冷氣休息</div></li>
+        <li><div class="tl-time">13:15–14:20</div><div class="tl-text">Bếp Cuốn 午餐</div></li>
+        <li><div class="tl-time">14:30–15:15</div><div class="tl-text">回飯店</div></li>
+        <li><div class="tl-time">15:30–16:15</div><div class="tl-text">Club Lounge afternoon tea</div></li>
+        <li><div class="tl-time">下午</div><div class="tl-text">泳池、SPA、海邊、睡午覺</div></li>
+        <li><div class="tl-time">晚上</div><div class="tl-text">飯店內輕鬆吃（Terra Mare / Long Bar），或視飽足感不吃正式晚餐</div></li>
+      </ul>
+
+      <div class="place">
+        <!-- 實景圖：Wikimedia Commons -->
+        <div class="place-img">
+          <span class="ph-label">Da Nang Cathedral<small>Pink Church</small></span>
+          <img loading="lazy" alt="Da Nang Cathedral Pink Church"
+               onerror="this.style.display='none'"
+               src="https://commons.wikimedia.org/wiki/Special:FilePath/Da%20Nang%20Cathedral%20-%20Da%20Nang,%20Vietnam%20-%20DSC02464.JPG?width=800">
+        </div>
+        <h4>Da Nang Cathedral / Pink Church</h4>
+        <p class="one-liner">峴港市區代表性粉紅教堂，適合短暫外觀拍照。</p>
+        <p class="meta"><b>領隊提醒：</b>宗教場所，彌撒或管制時可能無法入內，這次只當外觀拍照點。</p>
+        <p class="meta"><b>訂位：</b><span class="booking-no">不用</span></p>
+        <button class="map-btn" data-place="Da Nang Cathedral Pink Church">開啟地圖</button>
+      </div>
+
+      <div class="place">
+        <div class="place-img"><span class="ph-label">Bún Chả Cá Hờn<small>Michelin Bib Gourmand</small></span></div>
+        <h4>Bún Chả Cá Hờn</h4>
+        <p class="one-liner">Michelin Bib Gourmand 小吃店，代表峴港在地魚餅米粉湯。</p>
+        <p class="meta"><b>領隊提醒：</b>點 special / đặc biệt 即可，不要吃太撐，後面還有正式午餐。</p>
+        <p class="meta"><b>建議點法：</b>special / đặc biệt</p>
+        <p class="meta"><b>訂位：</b><span class="booking-no">不用</span>，抓離峰時間即可</p>
+        <button class="map-btn" data-place="Bún Chả Cá Hờn Da Nang">開啟地圖</button>
+      </div>
+
+      <div class="place">
+        <div class="place-img"><span class="ph-label">Cộng Cà Phê<small>Coconut Coffee</small></span></div>
+        <h4>Cộng Cà Phê Bạch Đằng</h4>
+        <p class="one-liner">越南知名咖啡品牌，這站作為冷氣休息與椰子咖啡中繼點。</p>
+        <p class="meta"><b>領隊提醒：</b>不是為了硬踩景點，而是讓市區小吃日有舒服休息點。</p>
+        <p class="meta"><b>建議點法：</b>Coconut Coffee、越南煉乳咖啡、冰沙類</p>
+        <p class="meta"><b>訂位：</b><span class="booking-no">不用</span></p>
+        <button class="map-btn" data-place="Cộng Cà Phê Bạch Đằng Da Nang">開啟地圖</button>
+      </div>
+
+      <div class="place">
+        <div class="place-img"><span class="ph-label">Bếp Cuốn<small>Michelin Selected</small></span></div>
+        <h4>Bếp Cuốn</h4>
+        <p class="one-liner">Michelin 入選越南料理餐廳，比純小吃店更舒服，適合旅客。</p>
+        <p class="meta"><b>領隊提醒：</b>這站負責把小吃日收得舒服、乾淨、有座位。</p>
+        <p class="meta"><b>建議點法：</b>Mẹt Bếp Cuốn platter、越式卷類、清爽蔬菜或沙拉，少點炸物</p>
+        <p class="meta"><b>訂位：</b><span class="booking-yes">建議訂 13:15，2 位，室內座位</span></p>
+        <button class="map-btn" data-place="Bếp Cuốn Da Nang">開啟地圖</button>
+      </div>
+
+      <div class="place">
+        <div class="place-img"><span class="ph-label">Long Bar<small>Resort Bar</small></span></div>
+        <h4>Long Bar</h4>
+        <p class="one-liner">飯店內輕鬆酒吧，適合晚上不想正式吃大餐時使用。</p>
+        <p class="meta"><b>領隊提醒：</b>這天中午已吃不少，晚上可簡單喝點東西或吃輕食。</p>
+        <p class="meta"><b>訂位：</b>視現場狀況，可請飯店確認。</p>
+        <button class="map-btn" data-place="Long Bar InterContinental Danang">開啟地圖</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- ========================= Day 3 ========================= -->
+  <section id="day3" class="block">
+    <article class="card day-card">
+      <div class="day-head">
+        <span class="day-no">Day 3</span>
+        <span class="day-date">6/30（二）</span>
+        <h3>飯店慢活，傍晚前往會安</h3>
+      </div>
+
+      <div class="highlight">
+        <h4>今日重點</h4>
+        會安只取黃昏與夜色精華，不白天去曬。下午先用 Lounge afternoon tea 補體力，15:30 出發，18:00 Mango Mango 晚餐，晚上看燈籠與河邊。
+      </div>
+
+      <div class="note"><strong>Lounge 建議：</strong>
+        <span class="tag tag-must">必用</span>　14:30–15:05 出發會安前享用 afternoon tea。Lounge Pass 最適合使用的一段，剛好補充體力，也不影響晚餐。
+      </div>
+
+      <ul class="timeline">
+        <li><div class="tl-time">08:30–10:30</div><div class="tl-text">飯店早餐，睡晚一點</div></li>
+        <li><div class="tl-time">11:00–14:00</div><div class="tl-text">飯店泳池、海邊、房間休息</div></li>
+        <li><div class="tl-time">14:30–15:05</div><div class="tl-text">Club Lounge afternoon tea</div></li>
+        <li><div class="tl-time">15:30</div><div class="tl-text">從飯店出發前往會安</div></li>
+        <li><div class="tl-time">17:00</div><div class="tl-text">抵達會安，先喝飲料或慢慢散步</div></li>
+        <li><div class="tl-time">18:00</div><div class="tl-text">Mango Mango 晚餐</div></li>
+        <li><div class="tl-time">19:30–20:45</div><div class="tl-text">Hoi An Ancient Town、燈籠、河邊散步</div></li>
+        <li><div class="tl-time">21:00–21:30</div><div class="tl-text">搭車返回飯店</div></li>
+        <li><div class="tl-time">22:00 前後</div><div class="tl-text">回飯店休息</div></li>
+      </ul>
+
+      <div class="place">
+        <!-- 實景圖：Wikimedia Commons（會安夜景燈籠） -->
+        <div class="place-img">
+          <span class="ph-label">Hoi An Ancient Town<small>Lanterns &amp; Riverside</small></span>
+          <img loading="lazy" alt="Hoi An Ancient Town by night"
+               onerror="this.style.display='none'"
+               src="https://commons.wikimedia.org/wiki/Special:FilePath/Hoi%20An%20by%20night%20(13772).jpg?width=800">
+        </div>
+        <h4>Hoi An Ancient Town</h4>
+        <p class="one-liner">會安最美的是黃昏到夜晚，燈籠與河邊氣氛是重點。</p>
+        <p class="meta"><b>領隊提醒：</b>不要白天去曬，也不要塞椰林竹籃船或 My Son 聖地。</p>
+        <p class="meta"><b>訂位：</b>景點不用，<span class="booking-yes">交通需先安排包車</span></p>
+        <button class="map-btn" data-place="Hoi An Ancient Town">開啟地圖</button>
+      </div>
+
+      <div class="place">
+        <div class="place-img"><span class="ph-label">Mango Mango<small>Riverside Dining</small></span></div>
+        <h4>Mango Mango</h4>
+        <p class="one-liner">會安河畔餐廳，有露台、陽台與夜景視野，適合類蜜月晚餐。</p>
+        <p class="meta"><b>領隊提醒：</b>訂 18:00 最剛好，吃完可以直接沿河散步。</p>
+        <p class="meta"><b>訂位：</b><span class="booking-yes">必訂，2 位，備註希望 balcony / river view / good view table</span></p>
+        <button class="map-btn" data-place="Mango Mango Hoi An">開啟地圖</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- ========================= Day 4 ========================= -->
+  <section id="day4" class="block">
+    <article class="card day-card">
+      <div class="day-head">
+        <span class="day-no">Day 4</span>
+        <span class="day-date">7/1（三）</span>
+        <h3>飯店完整度假日 + La Maison 1888</h3>
+      </div>
+
+      <div class="highlight">
+        <h4>今日重點</h4>
+        這天是整趟旅行的正式高潮。白天不要外出，不要吃太多，晚上留給 La Maison 1888。Lounge 可用早餐或少量下午茶，但不要完整吃 evening cocktails。
+      </div>
+
+      <div class="note"><strong>Lounge 建議：</strong>
+        <span class="tag tag-opt">可選</span>　早餐可選 Club Lounge breakfast；14:30–15:30 可少量 afternoon tea；不建議完整 evening cocktails，想體驗最多 17:30 喝一杯、18:00 離開。
+      </div>
+
+      <ul class="timeline">
+        <li><div class="tl-time">09:00–10:30</div><div class="tl-text">睡晚一點、飯店早餐，可選 Club Lounge breakfast</div></li>
+        <li><div class="tl-time">11:00–13:00</div><div class="tl-text">海邊、泳池、飯店散步</div></li>
+        <li><div class="tl-time">13:00</div><div class="tl-text">Long Bar / Terra Mare 輕食</div></li>
+        <li><div class="tl-time">14:30–15:30</div><div class="tl-text">可選 Club Lounge afternoon tea，少量即可</div></li>
+        <li><div class="tl-time">14:30–16:30</div><div class="tl-text">SPA 或房間休息</div></li>
+        <li><div class="tl-time">16:00–17:00</div><div class="tl-text">可選 La Maison Wine Tasting</div></li>
+        <li><div class="tl-time">17:30–18:00</div><div class="tl-text">若想體驗 Lounge evening cocktails，只喝一杯，不吃太多</div></li>
+        <li><div class="tl-time">18:30 或 19:00</div><div class="tl-text">La Maison 1888 晚餐</div></li>
+        <li><div class="tl-time">晚上</div><div class="tl-text">飯店散步、回房休息</div></li>
+      </ul>
+
+      <div class="place">
+        <div class="place-img"><span class="ph-label">La Maison 1888<small>Michelin ★ French</small></span></div>
+        <h4>La Maison 1888</h4>
+        <p class="one-liner">InterContinental Danang 內的 Michelin 一星法式餐廳，整趟旅行最正式的一餐。</p>
+        <p class="meta"><b>領隊提醒：</b>白天不要吃太飽，不要安排外出，把狀態留給晚餐。</p>
+        <p class="meta"><b>Dress code：</b>男生襯衫或 Polo、長褲、樂福鞋或乾淨休閒鞋；女生洋裝、裙裝或質感長褲。不要短褲、拖鞋、背心。</p>
+        <p class="meta"><b>訂位：</b><span class="booking-yes">必訂，建議 18:30 優先，19:00 備選</span></p>
+        <button class="map-btn" data-place="La Maison 1888 InterContinental Danang">開啟地圖</button>
+      </div>
+
+      <div class="place">
+        <div class="place-img"><span class="ph-label">La Maison Wine Tasting<small>Optional</small></span></div>
+        <h4>La Maison Wine Tasting</h4>
+        <p class="one-liner">La Maison 1888 的可選品酒活動。</p>
+        <p class="meta"><b>領隊提醒：</b>如果酒量普通可以跳過，把味覺留給晚餐。</p>
+        <p class="meta"><b>訂位：</b><span class="booking-yes">可選，需前一天確認</span></p>
+        <button class="map-btn" data-place="La Maison 1888 InterContinental Danang">開啟地圖</button>
+      </div>
+
+      <div class="place">
+        <div class="place-img"><span class="ph-label">Spa<small>Relax before dinner</small></span></div>
+        <h4>SPA</h4>
+        <p class="one-liner">這天適合安排 SPA，讓晚餐前狀態更放鬆。</p>
+        <p class="meta"><b>領隊提醒：</b>不要排太接近晚餐時間，避免匆忙。</p>
+        <p class="meta"><b>訂位：</b><span class="booking-yes">建議事先訂</span></p>
+        <button class="map-btn" data-place="InterContinental Danang SPA">開啟地圖</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- ========================= Day 5 ========================= -->
+  <section id="day5" class="block">
+    <article class="card day-card">
+      <div class="day-head">
+        <span class="day-no">Day 5</span>
+        <span class="day-date">7/2（四）</span>
+        <h3>回程日</h3>
+      </div>
+
+      <div class="highlight">
+        <h4>今日重點</h4>
+        10:00 起飛，早上不要排任何行程。不建議硬吃 Lounge breakfast，前一晚請飯店準備早餐盒或確認簡單早餐。
+      </div>
+
+      <div class="note"><strong>Lounge 建議：</strong>
+        <span class="tag tag-no">不建議</span>　早班機時間較緊，不要為了 Lounge 早餐壓縮機場時間。
+      </div>
+
+      <ul class="timeline">
+        <li><div class="tl-time">前一晚</div><div class="tl-text">整理行李，確認退房與接送；請飯店準備早餐盒或確認簡單早餐</div></li>
+        <li><div class="tl-time">06:30–07:00</div><div class="tl-text">起床</div></li>
+        <li><div class="tl-time">07:00–07:15</div><div class="tl-text">從飯店出發前往機場</div></li>
+        <li><div class="tl-time">08:00 左右</div><div class="tl-text">抵達機場</div></li>
+        <li><div class="tl-time">10:00</div><div class="tl-text">起飛</div></li>
+      </ul>
+
+      <div class="place">
+        <!-- 實景圖：Wikimedia Commons（峴港機場新航廈） -->
+        <div class="place-img">
+          <span class="ph-label">Da Nang Int'l Airport<small>DAD</small></span>
+          <img loading="lazy" alt="Da Nang International Airport terminal"
+               onerror="this.style.display='none'"
+               src="https://commons.wikimedia.org/wiki/Special:FilePath/DAD%20new%20terminal%202012%2001.JPG?width=800">
+        </div>
+        <h4>Da Nang International Airport</h4>
+        <p class="one-liner">回程日不排任何行程，抓寬時間去機場。</p>
+        <p class="meta"><b>領隊提醒：</b>飯店在半島上，早班機寧願抓寬一點。</p>
+        <p class="meta"><b>訂位：</b><span class="booking-yes">需提前確認送機時間與早餐盒</span></p>
+        <button class="map-btn" data-place="Da Nang International Airport">開啟地圖</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- ========================= Reservations Checklist ========================= -->
+  <section id="reservations" class="block">
+    <div class="block-title">
+      <span class="eyebrow">06 · Checklist</span>
+      <h2>Reservations Checklist</h2>
+      <span class="desc">勾選狀態會自動保存（重新整理仍保留）</span>
+    </div>
+
+    <!-- checkbox 透過 data-key 對應 localStorage -->
+    <div class="card">
+      <div class="check-group">
+        <h4>飯店與 Lounge</h4>
+        <label class="check-item"><input type="checkbox" data-key="r-hotel-1"><span>入住時確認 IHG Lounge Pass / Annual Lounge Membership 是否可用</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-hotel-2"><span>確認 Lounge 是否適用本人 + 1 位同行者</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-hotel-3"><span>確認 Club Lounge breakfast、afternoon tea、evening cocktails 現場時間</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-hotel-4"><span>確認 7/2 早餐盒或早晨簡單早餐</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-hotel-5"><span>確認 7/2 送機時間</span></label>
+      </div>
+
+      <div class="check-group">
+        <h4>餐廳</h4>
+        <label class="check-item"><input type="checkbox" data-key="r-food-1"><span>6/28 Citron，19:30 或 20:00，2 位，可作為 Lounge 後備案</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-food-2"><span>6/29 Bếp Cuốn，13:15，2 位，室內座位</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-food-3"><span>6/30 Mango Mango，18:00，2 位，balcony / river view / good view table 優先</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-food-4"><span>7/1 La Maison 1888，18:30 或 19:00，確認訂金、dress code、蜜月備註</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-food-5"><span>7/1 La Maison Wine Tasting，16:00–17:00，可選，前一天確認</span></label>
+      </div>
+
+      <div class="check-group">
+        <h4>交通</h4>
+        <label class="check-item"><input type="checkbox" data-key="r-car-1"><span>6/28 機場到飯店接送，已訂</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-car-2"><span>6/30 會安包車，15:30 飯店出發</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-car-3"><span>6/30 會安回程包車，21:00–21:30 回飯店</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-car-4"><span>7/2 飯店到機場送機，建議 07:00–07:15 出發</span></label>
+      </div>
+
+      <div class="check-group">
+        <h4>活動</h4>
+        <label class="check-item"><input type="checkbox" data-key="r-act-1"><span>6/29 或 7/1 SPA，可選</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-act-2"><span>7/1 La Maison 1888 前不要排太累的活動</span></label>
+        <label class="check-item"><input type="checkbox" data-key="r-act-3"><span>出發前 3–5 天再次確認所有餐廳與交通</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= Not Included ========================= -->
+  <section id="notincluded" class="block">
+    <div class="block-title">
+      <span class="eyebrow">07 · Not Included</span>
+      <h2>這趟不排項目</h2>
+      <span class="desc">為了維持輕鬆慢旅行主軸，以下刻意不安排</span>
+    </div>
+
+    <div class="skip-item">
+      <h4><span class="x">✕</span>Ba Na Hills / 巴拿山</h4>
+      <p>需要早起、排隊、纜車、長時間戶外與人潮。對怕熱怕累的類蜜月行程不划算。除非非常想拍 Golden Bridge，否則不值得犧牲一個舒服的度假日。</p>
+    </div>
+    <div class="skip-item">
+      <h4><span class="x">✕</span>Marble Mountains / Ngũ Hành Sơn / 五行山</h4>
+      <p>需要走路、階梯、洞穴與至少約 2 小時；即使有電梯，仍會消耗體力。6 月底 7 月初天氣偏熱，不適合這趟慢旅行主軸。</p>
+    </div>
+    <div class="skip-item">
+      <h4><span class="x">✕</span>市區海鮮大餐</h4>
+      <p>這趟已有飯店餐廳、Michelin 小吃、Mango Mango 與 La Maison 1888。海鮮大餐較適合多人熱鬧局，不是這次最優先。</p>
+    </div>
+    <div class="skip-item">
+      <h4><span class="x">✕</span>My Son Sanctuary</h4>
+      <p>戶外、日曬、距離與體力消耗較高，不符合這趟輕鬆慢旅行主軸。</p>
+    </div>
+    <div class="skip-item">
+      <h4><span class="x">✕</span>椰林竹籃船</h4>
+      <p>偏觀光體驗、天氣熱時容易疲累。這趟會安只取黃昏夜色精華，不做白天活動。</p>
+    </div>
+  </section>
+
+  <!-- ========================= Travel Tips ========================= -->
+  <section id="tips" class="block">
+    <div class="block-title">
+      <span class="eyebrow">08 · Travel Tips</span>
+      <h2>旅行提醒</h2>
+    </div>
+
+    <div class="card tip-card">
+      <h4>防曬與防熱</h4>
+      <ul>
+        <li>6 月底到 7 月初峴港偏熱。</li>
+        <li>白天戶外行程盡量少。</li>
+        <li>會安安排傍晚到晚上即可。</li>
+        <li>市區日安排粉紅教堂只短暫拍照，不深度走路。</li>
+      </ul>
+    </div>
+
+    <div class="card tip-card">
+      <h4>穿著</h4>
+      <ul>
+        <li>白天：透氣、輕薄、好走。</li>
+        <li>會安：適合拍照但仍要舒適。</li>
+        <li>La Maison 1888：男生襯衫或 Polo、長褲、樂福鞋或乾淨休閒鞋；女生洋裝、裙裝或質感長褲。</li>
+        <li>不要穿短褲、拖鞋、背心去 La Maison 1888。</li>
+      </ul>
+    </div>
+
+    <div class="card tip-card">
+      <h4>餐飲節奏</h4>
+      <ul>
+        <li>Day 1：Lounge 優先，Citron 備案。</li>
+        <li>Day 2：小吃 + Bếp Cuốn，晚上不要吃太正式。</li>
+        <li>Day 3：Lounge 下午茶後去會安，不影響 Mango Mango。</li>
+        <li>Day 4：La Maison 1888 是重點，不要被 Lounge canapés 吃飽。</li>
+        <li>Day 5：早餐盒比 Lounge breakfast 更穩。</li>
+      </ul>
+    </div>
+
+    <div class="card tip-card">
+      <h4>交通</h4>
+      <ul>
+        <li>飯店在 Sơn Trà 半島，出入市區需要抓車程。</li>
+        <li>會安建議包車，不要臨時叫車。</li>
+        <li>回程日抓寬時間去機場。</li>
+      </ul>
+    </div>
+
+    <div class="note" style="margin-top:6px;">
+      飯店與餐廳營業時間、Club Lounge 時段，請一律以<strong>現場公告與當日確認為準</strong>。
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="line"></div>
+  2026 峴港・會安 5 天 4 夜旅行手冊<br>
+  InterContinental Danang Sun Peninsula Resort｜6/28–7/2<br>
+  慢・舒服・有質感
+</footer>
+
+<!-- 回到頂部按鈕 -->
+<button id="toTop" aria-label="回到頂部">↑</button>
+
+<script>
+  /* =========================================================
+     1) Google Maps 按鈕
+     將地點名稱 encodeURIComponent 後產生 Google Maps 搜尋連結
+     ========================================================= */
+  document.querySelectorAll('.map-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var place = btn.getAttribute('data-place') || '';
+      var url = 'https://www.google.com/maps/search/?api=1&query=' +
+                encodeURIComponent(place);
+      window.open(url, '_blank');
+    });
+  });
+
+  /* =========================================================
+     2) Checklist：使用 localStorage 保存勾選狀態
+     每個 checkbox 以 data-key 當作儲存 key
+     ========================================================= */
+  var STORE_PREFIX = 'danang2026-';
+  document.querySelectorAll('.check-item input[type="checkbox"]').forEach(function (box) {
+    var key = STORE_PREFIX + box.getAttribute('data-key');
+    // 載入時還原狀態
+    if (localStorage.getItem(key) === '1') {
+      box.checked = true;
+    }
+    // 勾選變動時保存
+    box.addEventListener('change', function () {
+      localStorage.setItem(key, box.checked ? '1' : '0');
+    });
+  });
+
+  /* =========================================================
+     3) 回到頂部按鈕：捲動超過一定距離才顯示
+     ========================================================= */
+  var toTop = document.getElementById('toTop');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 400) {
+      toTop.classList.add('show');
+    } else {
+      toTop.classList.remove('show');
+    }
+  });
+  toTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
