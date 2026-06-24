@@ -266,14 +266,6 @@
     display:block;letter-spacing:1px;font-size:11px;color:#cdc1a6;
     text-transform:none;margin-top:4px;
   }
-  /* 照片上傳／更換按鈕（照片存在本機瀏覽器 localStorage） */
-  .place-img .img-edit,.place-img .img-remove{
-    position:absolute;z-index:3;bottom:8px;cursor:pointer;border:none;
-    font-size:11px;font-weight:600;padding:5px 11px;border-radius:999px;
-    color:#f0e6c8;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
-  }
-  .place-img .img-edit{right:8px;background:rgba(31,61,46,.82);}
-  .place-img .img-remove{left:8px;background:rgba(120,70,70,.85);}
   .place h4{font-size:15.5px;color:var(--green);margin-bottom:4px;}
   .place .one-liner{font-size:14px;color:var(--text);margin-bottom:8px;}
   .place .meta{font-size:13px;color:var(--text-soft);margin:3px 0;}
@@ -631,13 +623,6 @@
         <p class="meta"><span class="booking-yes">已訂 18:00 · balcony 河景位 · 蜜月</span>　41 Nguyễn Phúc Chu, An Hội</p>
         <button class="map-btn" data-place="Morning Glory Signature Hoi An">開啟地圖</button>
       </div>
-
-      <div class="place">
-        <div class="place-img"><span class="ph-label">Mango Mango<small>備案 · Riverside View</small></span></div>
-        <h4>Mango Mango（備案）</h4>
-        <p class="one-liner">隔壁河畔 fusion 越菜，露台河景一流——訂不到 Morning Glory 時的備案。</p>
-        <button class="map-btn" data-place="Mango Mango Hoi An">開啟地圖</button>
-      </div>
     </article>
   </section>
 
@@ -841,15 +826,10 @@
   });
 
   /* =========================================================
-     4) 餐廳／景點照片上傳
-        每個地點圖片區加「＋ 照片」鈕：從手機相簿選圖即顯示，
-        並縮圖後存進本機 localStorage（重開仍在）。
-        注意：照片只存在「你這台裝置的瀏覽器」，不會出現在分享連結或別人裝置。
-        若要讓所有人都看到，需把照片檔放進 repo（再請我 push）。
+     4) 餐廳／景點照片：載入 images/<slug>.(jpg|jpeg|png)，
+        失敗則退回網路實景圖，再退回風格化色塊。
      ========================================================= */
   (function () {
-    var IMG_PREFIX = 'danang2026-img-';
-    // 地點 → 檔名對照（把照片放在 images/<slug>.jpg，雙端皆可見）
     var SLUGS = {
       'InterContinental Danang Sun Peninsula Resort': 'resort',
       'Club InterContinental': 'club-lounge',
@@ -862,7 +842,6 @@
       'Long Bar': 'long-bar',
       'Hoi An Ancient Town': 'hoi-an',
       'Morning Glory Signature': 'morning-glory',
-      'Mango Mango（備案）': 'mango-mango',
       'La Maison 1888': 'la-maison',
       'SPA': 'spa',
       'Da Nang International Airport': 'airport'
@@ -876,89 +855,18 @@
       var h4 = place ? place.querySelector('h4') : null;
       var name = h4 ? h4.textContent.trim() : '';
       var slug = SLUGS[name] || slugify(name);
-      var key = IMG_PREFIX + slug;
 
-      // 確保有一個 <img>；記住原本的網路實景圖
       var img = box.querySelector('img');
       var remoteDef = (img && img.getAttribute('src')) ? img.getAttribute('src') : '';
-      if (!img) {
-        img = document.createElement('img');
-        img.alt = name;
-        box.insertBefore(img, box.firstChild);
-      }
+      if (!img) { img = document.createElement('img'); img.alt = name; box.insertBefore(img, box.firstChild); }
       img.removeAttribute('onerror');
 
-      // 顯示優先序：本機上傳 → images/<slug>.(jpg|jpeg|png) → 網路實景圖 → 色塊
-      function defaults() {
-        var list = ['images/' + slug + '.jpg', 'images/' + slug + '.jpeg', 'images/' + slug + '.png'];
-        if (remoteDef) list.push(remoteDef);
-        return list;
-      }
-      function show(srcs) {
-        var i = 0;
-        img.onerror = function () {
-          i++;
-          if (i < srcs.length) { img.src = srcs[i]; }
-          else { img.onerror = null; img.style.display = 'none'; }
-        };
-        img.onload = function () { img.style.display = 'block'; };
-        if (srcs.length) { img.src = srcs[0]; } else { img.style.display = 'none'; }
-      }
-
-      var saved = localStorage.getItem(key);
-      show(saved ? [saved].concat(defaults()) : defaults());
-
-      // 隱藏的檔案輸入（手機會開相簿／相機）
-      var input = document.createElement('input');
-      input.type = 'file'; input.accept = 'image/*'; input.style.display = 'none';
-      box.appendChild(input);
-
-      // 「＋ 照片 / ✎ 換照片」按鈕
-      var edit = document.createElement('button');
-      edit.type = 'button'; edit.className = 'img-edit';
-      edit.textContent = saved ? '✎ 換照片' : '＋ 照片';
-      box.appendChild(edit);
-      edit.addEventListener('click', function (e) { e.stopPropagation(); input.click(); });
-
-      // 「✕ 移除」按鈕（有自訂照片時才顯示）
-      var rm = document.createElement('button');
-      rm.type = 'button'; rm.className = 'img-remove'; rm.textContent = '✕';
-      rm.style.display = saved ? 'block' : 'none';
-      box.appendChild(rm);
-      rm.addEventListener('click', function (e) {
-        e.stopPropagation();
-        if (!confirm('移除本機上傳的照片？（仍會顯示 images/ 內的照片）')) return;
-        localStorage.removeItem(key);
-        edit.textContent = '＋ 照片'; rm.style.display = 'none';
-        show(defaults());
-      });
-
-      // 選好照片：縮圖到最寬 900px、JPEG 0.75，再存 localStorage
-      input.addEventListener('change', function () {
-        var file = input.files && input.files[0];
-        if (!file) return;
-        var reader = new FileReader();
-        reader.onload = function (ev) {
-          var tmp = new Image();
-          tmp.onload = function () {
-            var max = 900, w = tmp.width, h = tmp.height;
-            if (w > max) { h = Math.round(h * max / w); w = max; }
-            var c = document.createElement('canvas'); c.width = w; c.height = h;
-            c.getContext('2d').drawImage(tmp, 0, 0, w, h);
-            var data = c.toDataURL('image/jpeg', 0.75);
-            try {
-              localStorage.setItem(key, data);
-              edit.textContent = '✎ 換照片'; rm.style.display = 'block';
-              show([data]);
-            } catch (err) {
-              alert('照片太大、本機儲存空間已滿，請改用較小的照片，或先移除幾張。');
-            }
-          };
-          tmp.src = ev.target.result;
-        };
-        reader.readAsDataURL(file);
-        input.value = '';
-      });
+      var srcs = ['images/' + slug + '.jpg', 'images/' + slug + '.jpeg', 'images/' + slug + '.png'];
+      if (remoteDef) srcs.push(remoteDef);
+      var i = 0;
+      img.onerror = function () { i++; if (i < srcs.length) { img.src = srcs[i]; } else { img.onerror = null; img.style.display = 'none'; } };
+      img.onload = function () { img.style.display = 'block'; };
+      img.src = srcs[0];
     });
   })();
 </script>
