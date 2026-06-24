@@ -82,7 +82,12 @@
     text-shadow:0 2px 14px rgba(0,0,0,.5);
   }
   .hero .sub{
-    font-size:15px;color:#ece3cf;margin-bottom:18px;
+    font-size:15px;color:#ece3cf;margin-bottom:8px;
+    text-shadow:0 1px 8px rgba(0,0,0,.5);line-height:1.7;
+  }
+  .hero .names{
+    font-size:14px;letter-spacing:5px;color:var(--gold-soft);
+    text-transform:uppercase;margin:2px 0 18px;
     text-shadow:0 1px 8px rgba(0,0,0,.5);
   }
   .hero .lead{
@@ -219,17 +224,18 @@
 
   /* 時間軸 */
   .timeline{list-style:none;margin:14px 0 0;padding:0;position:relative;}
-  .timeline::before{
-    content:"";position:absolute;left:7px;top:6px;bottom:6px;
-    width:2px;background:var(--line);
-  }
   .timeline li{
     position:relative;padding:0 0 22px 28px;
   }
   .timeline li::before{
-    content:"";position:absolute;left:4px;top:7px;
+    content:"";position:absolute;left:4px;top:7px;z-index:1;
     width:7px;height:7px;border-radius:50%;
     background:var(--cream-card);border:2px solid var(--gold);
+  }
+  /* 連接線：每個節點往下連到下一點，最後一點不畫 → 線停在末端 */
+  .timeline li:not(:last-child)::after{
+    content:"";position:absolute;left:6px;top:7px;bottom:-11px;
+    width:2px;background:var(--line);z-index:0;
   }
   .timeline .tl-time{font-size:12.5px;font-weight:700;letter-spacing:.5px;color:var(--brown);margin-bottom:3px;}
   .timeline .tl-text{font-size:15px;line-height:1.75;}
@@ -241,9 +247,8 @@
   }
   /* 時間軸內的 Lounge 小提示 */
   .timeline .tl-tip{
-    display:block;margin-top:6px;font-size:13px;color:var(--brown);
-    background:#f4efe2;border-left:3px solid var(--gold);
-    border-radius:8px;padding:6px 10px;
+    display:block;margin-top:7px;font-size:13px;color:var(--brown);
+    background:#f4efe2;border-radius:8px;padding:7px 11px;line-height:1.6;
   }
   .timeline .tl-tip b{color:var(--gold);}
 
@@ -350,11 +355,14 @@
   #toTop.show{opacity:1;pointer-events:auto;}
 
   /* Footer */
-  footer{
-    text-align:center;padding:36px 18px 48px;color:var(--text-soft);
-    font-size:12.5px;
+  footer.closing{
+    text-align:center;margin-top:12px;
+    background:linear-gradient(160deg,#234334 0%, #1f3d2e 50%, #16291f 100%);
+    color:#e9dfc8;padding:50px 24px 56px;
   }
-  footer .line{width:40px;height:1px;background:var(--gold-soft);margin:0 auto 14px;}
+  footer.closing .eyebrow{color:var(--gold-soft);}
+  footer.closing .closing-line{font-size:16px;line-height:1.95;color:#f4ecd9;margin:12px 0 24px;}
+  footer.closing .closing-sign{font-size:11.5px;letter-spacing:2px;color:#bdb094;}
 
   /* 桌機微調 */
   @media (min-width:760px){
@@ -367,9 +375,10 @@
 
 <!-- ========================= Hero / 封面 ========================= -->
 <header class="hero" id="top">
-  <div class="eyebrow">Danang · Slow Travel</div>
-  <h1>2026 峴港 5天4夜</h1>
-  <p class="sub">InterContinental Danang Sun Peninsula Resort｜6/28–7/2</p>
+  <div class="eyebrow">Danang</div>
+  <h1>Danang &amp; Hoi An</h1>
+  <p class="sub">InterContinental Danang<br>Jun 28 – Jul 2, 2026</p>
+  <p class="names">Tim &amp; Yoona</p>
   <span class="tagline">Slow · Serene · Chic</span>
 </header>
 
@@ -723,6 +732,15 @@
       <p><b>顧慮</b>　偏觀光化、日曬、天熱易累。</p>
       <p><b>我們</b>　略過——會安我們只取夜色。</p>
     </div>
+
+    <div class="skip-item">
+      <h4>峴港高級 SPA・口袋名單</h4>
+      <p>飯店內 <b>HARNN Heritage Spa</b> 為首選；想搭配進城或會安，My Khe 一帶順路：</p>
+      <p><b>Golden Lotus</b>　20 年品牌、有機調理，環境精緻。</p>
+      <p><b>Herbal Spa</b>　TripAdvisor 峴港第一，四手按摩有名。</p>
+      <p><b>Nguôn Spa</b>　竹林設計，最有氛圍。</p>
+      <p><b>Oani Spa</b>　精緻小店，有中文服務。</p>
+    </div>
   </section>
 
   <!-- ========================= Travel Tips ========================= -->
@@ -760,21 +778,12 @@
     </div>
   </section>
 
-  <!-- ========================= Closing ========================= -->
-  <section class="block">
-    <div class="card" style="text-align:center;">
-      <p style="font-size:12px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin:0 0 10px;">Enjoy the slow days</p>
-      <p style="font-size:16px;color:var(--brown);line-height:1.9;margin:0;">剩下的就別計畫了。<br>把手機收進口袋，好好過這五天。</p>
-    </div>
-  </section>
-
 </main>
 
-<footer>
-  <div class="line"></div>
-  2026 峴港 5天4夜<br>
-  InterContinental Danang Sun Peninsula Resort｜6/28–7/2<br>
-  Slow · Serene · Chic
+<footer class="closing">
+  <p class="eyebrow">Enjoy the slow days</p>
+  <p class="closing-line">剩下的就別計畫了。<br>把手機收進口袋，好好過這五天。</p>
+  <p class="closing-sign">2026 Vietnam Danang Trip — Tim &amp; Yoona</p>
 </footer>
 
 <!-- 回到頂部按鈕 -->
