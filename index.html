@@ -257,6 +257,14 @@
     display:block;letter-spacing:1px;font-size:11px;color:#cdc1a6;
     text-transform:none;margin-top:4px;
   }
+  /* 照片上傳／更換按鈕（照片存在本機瀏覽器 localStorage） */
+  .place-img .img-edit,.place-img .img-remove{
+    position:absolute;z-index:3;bottom:8px;cursor:pointer;border:none;
+    font-size:11px;font-weight:600;padding:5px 11px;border-radius:999px;
+    color:#f0e6c8;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+  }
+  .place-img .img-edit{right:8px;background:rgba(31,61,46,.82);}
+  .place-img .img-remove{left:8px;background:rgba(120,70,70,.85);}
   .place h4{font-size:15.5px;color:var(--green);margin-bottom:4px;}
   .place .one-liner{font-size:14px;color:var(--text);margin-bottom:8px;}
   .place .meta{font-size:13px;color:var(--text-soft);margin:3px 0;}
@@ -1061,6 +1069,96 @@
   toTop.addEventListener('click', function () {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  /* =========================================================
+     4) 餐廳／景點照片上傳
+        每個地點圖片區加「＋ 照片」鈕：從手機相簿選圖即顯示，
+        並縮圖後存進本機 localStorage（重開仍在）。
+        注意：照片只存在「你這台裝置的瀏覽器」，不會出現在分享連結或別人裝置。
+        若要讓所有人都看到，需把照片檔放進 repo（再請我 push）。
+     ========================================================= */
+  (function () {
+    var IMG_PREFIX = 'danang2026-img-';
+    function slugify(s) {
+      return (s || '').trim().toLowerCase()
+        .replace(/[（(].*?[)）]/g, '')   // 去掉括號內容（如「備案」「第一晚晚餐」）
+        .replace(/[／/].*/, '')          // 取斜線前（如 Cathedral / Pink Church）
+        .replace(/\s+/g, '-').replace(/[^a-z0-9\-]+/g, '').slice(0, 40);
+    }
+    document.querySelectorAll('.place-img').forEach(function (box) {
+      var place = box.closest('.place');
+      var h4 = place ? place.querySelector('h4') : null;
+      var key = IMG_PREFIX + slugify(h4 ? h4.textContent : 'x');
+
+      // 確保有一個 <img>（風格化色塊的卡原本沒有）
+      var img = box.querySelector('img');
+      if (!img) {
+        img = document.createElement('img');
+        img.alt = h4 ? h4.textContent : '';
+        img.addEventListener('error', function () { img.style.display = 'none'; });
+        box.insertBefore(img, box.firstChild);
+        img.style.display = 'none';
+      }
+      if (img.getAttribute('src')) img.dataset.def = img.getAttribute('src'); // 記住預設圖
+
+      // 還原本機已存照片
+      var saved = localStorage.getItem(key);
+      if (saved) { img.src = saved; img.style.display = 'block'; }
+
+      // 隱藏的檔案輸入（手機會開相簿／相機）
+      var input = document.createElement('input');
+      input.type = 'file'; input.accept = 'image/*'; input.style.display = 'none';
+      box.appendChild(input);
+
+      // 「＋ 照片 / ✎ 換照片」按鈕
+      var edit = document.createElement('button');
+      edit.type = 'button'; edit.className = 'img-edit';
+      edit.textContent = saved ? '✎ 換照片' : '＋ 照片';
+      box.appendChild(edit);
+      edit.addEventListener('click', function (e) { e.stopPropagation(); input.click(); });
+
+      // 「✕ 移除」按鈕（有自訂照片時才顯示）
+      var rm = document.createElement('button');
+      rm.type = 'button'; rm.className = 'img-remove'; rm.textContent = '✕';
+      rm.style.display = saved ? 'block' : 'none';
+      box.appendChild(rm);
+      rm.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (!confirm('移除這張照片？')) return;
+        localStorage.removeItem(key);
+        if (img.dataset.def) { img.src = img.dataset.def; img.style.display = 'block'; }
+        else { img.removeAttribute('src'); img.style.display = 'none'; }
+        edit.textContent = '＋ 照片'; rm.style.display = 'none';
+      });
+
+      // 選好照片：縮圖到最寬 900px、JPEG 0.75，再存 localStorage
+      input.addEventListener('change', function () {
+        var file = input.files && input.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (ev) {
+          var tmp = new Image();
+          tmp.onload = function () {
+            var max = 900, w = tmp.width, h = tmp.height;
+            if (w > max) { h = Math.round(h * max / w); w = max; }
+            var c = document.createElement('canvas'); c.width = w; c.height = h;
+            c.getContext('2d').drawImage(tmp, 0, 0, w, h);
+            var data = c.toDataURL('image/jpeg', 0.75);
+            try {
+              localStorage.setItem(key, data);
+              img.src = data; img.style.display = 'block';
+              edit.textContent = '✎ 換照片'; rm.style.display = 'block';
+            } catch (err) {
+              alert('照片太大、本機儲存空間已滿，請改用較小的照片，或先移除幾張。');
+            }
+          };
+          tmp.src = ev.target.result;
+        };
+        reader.readAsDataURL(file);
+        input.value = '';
+      });
+    });
+  })();
 </script>
 </body>
 </html>
