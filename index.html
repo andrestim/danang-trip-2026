@@ -300,13 +300,12 @@
 
   /* 複製地點名稱按鈕 */
   .copy-btn{
-    margin-left:8px;border:1px solid var(--line);background:var(--cream-card);
+    margin-left:8px;border:none;background:transparent;
     color:var(--green-soft);cursor:pointer;
     display:inline-flex;align-items:center;justify-content:center;
-    width:24px;height:22px;padding:0;border-radius:7px;vertical-align:middle;
-    font-size:12px;line-height:1;
+    padding:0;vertical-align:middle;line-height:1;font-size:15px;
   }
-  .copy-btn:active{background:var(--beige);}
+  .copy-btn:active{opacity:.5;}
 
   /* =========================================================
      Checklist
@@ -895,7 +894,7 @@
      ========================================================= */
   document.querySelectorAll('.place h4').forEach(function (h4) {
     var name = h4.textContent.trim();
-    var ICON = '<svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>';
+    var ICON = '<svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>';
     var btn = document.createElement('button');
     btn.type = 'button'; btn.className = 'copy-btn'; btn.setAttribute('aria-label', '複製名稱'); btn.innerHTML = ICON;
     h4.appendChild(btn);
