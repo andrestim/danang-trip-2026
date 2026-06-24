@@ -232,6 +232,13 @@
   }
   .timeline .tl-time{font-size:13px;font-weight:700;color:var(--brown);}
   .timeline .tl-text{font-size:14.5px;}
+  /* 時間軸內的 Lounge 小提示 */
+  .timeline .tl-tip{
+    display:block;margin-top:6px;font-size:13px;color:var(--brown);
+    background:#f4efe2;border-left:3px solid var(--gold);
+    border-radius:8px;padding:6px 10px;
+  }
+  .timeline .tl-tip b{color:var(--gold);}
 
   /* 地點介紹小卡 */
   .place{
@@ -246,12 +253,14 @@
     display:flex;align-items:center;justify-content:center;
   }
   .place-img img{
-    width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1;
+    width:100%;height:100%;object-fit:cover;display:block;
+    position:absolute;inset:0;z-index:1;opacity:.45;
   }
-  /* 風格化版位文字（實景圖載入失敗時也會顯示作為後備） */
+  /* 版位文字永遠在最上層；有照片時照片以半透明墊在下方，維持墨綠配色 */
   .place-img .ph-label{
-    position:absolute;z-index:0;text-align:center;color:var(--gold-soft);
+    position:absolute;z-index:2;text-align:center;color:var(--gold-soft);
     letter-spacing:3px;font-size:13px;padding:0 16px;text-transform:uppercase;
+    text-shadow:0 1px 5px rgba(0,0,0,.5);
   }
   .place-img .ph-label small{
     display:block;letter-spacing:1px;font-size:11px;color:#cdc1a6;
@@ -274,14 +283,15 @@
 
   /* 地圖按鈕 */
   .map-btn{
-    display:inline-flex;align-items:center;gap:6px;margin-top:10px;
-    background:var(--green);color:#f3ecd9;border:none;cursor:pointer;
-    font-size:13px;font-weight:600;letter-spacing:.5px;
-    padding:9px 16px;border-radius:999px;
-    box-shadow:var(--shadow-sm);
+    display:inline-flex;align-items:center;gap:5px;margin-top:10px;margin-right:6px;
+    background:var(--cream-card);color:var(--green-soft);
+    border:1px solid var(--line);cursor:pointer;
+    font-size:12.5px;font-weight:500;letter-spacing:.3px;
+    padding:6px 13px;border-radius:999px;
+    box-shadow:none;
   }
-  .map-btn:active{background:var(--green-soft);}
-  .map-btn::before{content:"📍";font-size:13px;}
+  .map-btn:active{background:var(--beige);}
+  .map-btn::before{content:"📍";font-size:12px;opacity:.75;}
 
   /* =========================================================
      Checklist
@@ -515,10 +525,6 @@
         抵達後不要衝會安，也不要進市區。先確認 Lounge Pass，若可用就先到 Club Lounge 享用 welcome drink / evening cocktails，正式進入度假模式。
       </div>
 
-      <div class="note"><strong>Lounge 建議：</strong>
-        <span class="tag tag-must">必用</span><span class="tag tag-rec">推薦</span>　Lounge 作為 welcome drink 與輕食，Citron 改備案。
-      </div>
-
       <!-- 入境快速通關：已訂 KKday 268777，保住抵達當天的 Lounge 時段 -->
       <div class="note"><strong>入境快速通關：</strong>已訂 VIP fast-track（KKday 268777），專人帶優先查驗道。暑假傍晚落地人潮多，這能保住「抵達 → 輕鬆 check-in → Lounge welcome drink」這條線。提醒：fast-track 只加速查驗，行李轉盤仍要等；<strong>e-visa 請先辦好並印出</strong>。</div>
 
@@ -527,7 +533,8 @@
         <li><div class="tl-time">16:30</div><div class="tl-text">抵達峴港機場，VIP 快速通關專人接、走優先查驗道</div></li>
         <li><div class="tl-time">17:15–18:00</div><div class="tl-text">已訂機場接送（KKday 10079，直送半島飯店），前往 InterContinental Danang</div></li>
         <li><div class="tl-time">18:00–19:00</div><div class="tl-text">Check-in、整理行李、熟悉飯店、確認 Lounge Pass</div></li>
-        <li><div class="tl-time">18:30–19:15</div><div class="tl-text">若來得及，Club Lounge evening cocktails &amp; canapés</div></li>
+        <li><div class="tl-time">18:30–19:15</div><div class="tl-text">若來得及，Club Lounge evening cocktails &amp; canapés
+          <span class="tl-tip"><b>Lounge 建議 · 必用</b>：當 welcome drink 與輕食，別吃太多 canapés；Citron 改備案或輕晚餐。</span></div></li>
         <li><div class="tl-time">19:30–20:00</div><div class="tl-text">Citron 晚餐（斗笠海景包廂、註明蜜月）；太累則 Lounge canapés 當輕晚餐後回房</div></li>
         <li><div class="tl-time">晚上</div><div class="tl-text">早點休息，不再外出</div></li>
       </ul>
@@ -590,10 +597,6 @@
       <div class="highlight">
         <h4>今日重點</h4>
         這天是唯一安排峴港市區精華的日子，時間彈性：可早上出發，也可睡飽後午後甚至傍晚再去。重點是短、順、舒服：Mì Quảng（峴港招牌薑黃寬麵）、Cộng Cà Phê、Bếp Cuốn，粉紅教堂安排在傍晚黃金時段外拍，避開正午最曬。
-      </div>
-
-      <div class="note"><strong>Lounge 建議：</strong>
-        <span class="tag tag-opt">視情況</span>　若早上出發、下午回飯店，可享用 15:30 afternoon tea；若午後／傍晚才進市區，這天可能用不到下午茶，改在市區用餐即可。
       </div>
 
       <!-- 彈性時間版：早上或午後／傍晚出發皆可，教堂安排在傍晚黃金時段 -->
@@ -680,17 +683,14 @@
         會安只取黃昏與夜色精華，不白天去曬。下午先用 Lounge afternoon tea 補體力，15:30 出發，18:00 Morning Glory Signature 道地越南晚餐，晚上看燈籠與河邊。
       </div>
 
-      <div class="note"><strong>Lounge 建議：</strong>
-        <span class="tag tag-must">必用</span>　14:30–15:05 出發會安前享用 afternoon tea。Lounge Pass 最適合使用的一段，剛好補充體力，也不影響晚餐。
-      </div>
-
       <!-- 會安交通：已訂來回接送（兩段單程），回程需先約好接送點 -->
       <div class="note"><strong>會安交通：</strong>已訂<strong>來回接送（兩段單程）</strong>。回程約 21:15–21:30，<strong>先約好明確接送點</strong>（古鎮為步行區、車只能在外圍等，如 An Hội 橋頭／YALY Couture 358 Nguyễn Duy Hiệu St）並存好司機聯絡方式。飯店雖有免費接駁（去 14:00／回 19:00、需提前 4 小時預約、不可放行李），但回程 19:00 太早、不適合今晚的晚餐與夜景，故不採用。</div>
 
       <ul class="timeline">
         <li><div class="tl-time">08:30–10:30</div><div class="tl-text">飯店早餐，睡晚一點</div></li>
         <li><div class="tl-time">11:00–14:00</div><div class="tl-text">飯店泳池、海邊、房間休息</div></li>
-        <li><div class="tl-time">14:30–15:05</div><div class="tl-text">Club Lounge afternoon tea</div></li>
+        <li><div class="tl-time">14:30–15:05</div><div class="tl-text">Club Lounge afternoon tea
+          <span class="tl-tip"><b>Lounge 建議 · 必用</b>：出發會安前的最佳時機，補體力又不影響 18:00 晚餐。</span></div></li>
         <li><div class="tl-time">15:30</div><div class="tl-text">搭已訂接送從飯店出發前往會安</div></li>
         <li><div class="tl-time">17:00</div><div class="tl-text">抵達會安，先喝飲料或慢慢散步</div></li>
         <li><div class="tl-time">18:00</div><div class="tl-text">Morning Glory Signature 晚餐（道地越南菜）</div></li>
@@ -749,10 +749,6 @@
       <div class="highlight">
         <h4>今日重點</h4>
         這天是整趟旅行的正式高潮。白天不要外出，不要吃太多，晚上留給 La Maison 1888。Lounge 可用早餐或少量下午茶，但不要完整吃 evening cocktails。
-      </div>
-
-      <div class="note"><strong>Lounge 建議：</strong>
-        <span class="tag tag-opt">可選</span>　早餐可選 Club Lounge breakfast；14:30–15:30 可少量 afternoon tea；不建議完整 evening cocktails，想體驗最多 17:30 喝一杯、18:00 離開。
       </div>
 
       <ul class="timeline">
@@ -820,10 +816,6 @@
       <div class="highlight">
         <h4>今日重點</h4>
         10:00 起飛，早上不要排任何行程。不建議硬吃 Lounge breakfast，前一晚請飯店準備早餐盒或確認簡單早餐。
-      </div>
-
-      <div class="note"><strong>Lounge 建議：</strong>
-        <span class="tag tag-no">不建議</span>　早班機時間較緊，不要為了 Lounge 早餐壓縮機場時間。
       </div>
 
       <!-- 出境安排：已購買出境 fast-track，可晚一點出發 -->
