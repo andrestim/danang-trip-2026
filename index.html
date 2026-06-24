@@ -143,10 +143,9 @@
   .highlight{
     background:linear-gradient(135deg,#f3 ,#fff);
     background:#f4efe2;
-    border-left:4px solid var(--gold);
     border-radius:var(--radius-sm);
-    padding:14px 16px;margin:14px 0;
-    font-size:14.5px;color:var(--brown);
+    padding:15px 17px;margin:14px 0;
+    font-size:15px;color:var(--brown);line-height:1.85;
   }
   .highlight h4{
     font-size:12px;letter-spacing:2px;color:var(--gold);
@@ -225,15 +224,21 @@
     width:2px;background:var(--line);
   }
   .timeline li{
-    position:relative;padding:0 0 16px 28px;
+    position:relative;padding:0 0 22px 28px;
   }
   .timeline li::before{
-    content:"";position:absolute;left:1px;top:5px;
-    width:13px;height:13px;border-radius:50%;
+    content:"";position:absolute;left:4px;top:7px;
+    width:7px;height:7px;border-radius:50%;
     background:var(--cream-card);border:2px solid var(--gold);
   }
-  .timeline .tl-time{font-size:13px;font-weight:700;color:var(--brown);}
-  .timeline .tl-text{font-size:14.5px;}
+  .timeline .tl-time{font-size:12.5px;font-weight:700;letter-spacing:.5px;color:var(--brown);margin-bottom:3px;}
+  .timeline .tl-text{font-size:15px;line-height:1.75;}
+  .timeline .tl-text .spot{font-weight:600;color:var(--green);}
+  .timeline .tl-drive{
+    display:inline-block;margin-top:7px;
+    font-size:12px;letter-spacing:.5px;color:var(--text-soft);
+    background:var(--beige);border-radius:999px;padding:3px 11px;
+  }
   /* 時間軸內的 Lounge 小提示 */
   .timeline .tl-tip{
     display:block;margin-top:6px;font-size:13px;color:var(--brown);
@@ -269,8 +274,8 @@
     text-transform:none;margin-top:4px;
   }
   .place h4{font-size:15.5px;color:var(--green);margin-bottom:4px;}
-  .place .one-liner{font-size:14px;color:var(--text);margin-bottom:8px;}
-  .place .meta{font-size:13px;color:var(--text-soft);margin:3px 0;}
+  .place .one-liner{font-size:14px;color:var(--text);margin-bottom:8px;line-height:1.7;}
+  .place .meta{font-size:13px;color:var(--text-soft);margin:4px 0;line-height:1.65;}
   .place .meta b{color:var(--brown);font-weight:600;}
   .booking-yes{color:#a4671f;font-weight:700;}
   .booking-no{color:var(--green-soft);font-weight:600;}
@@ -436,7 +441,8 @@
         <li><div class="tl-time">12:00</div><div class="tl-text">送機，前往桃園機場第二航廈</div></li>
         <li><div class="tl-time">14:40</div><div class="tl-text">VN3591 桃園起飛</div></li>
         <li><div class="tl-time">16:30</div><div class="tl-text">抵達峴港，專人快速通關</div></li>
-        <li><div class="tl-time">17:15</div><div class="tl-text">接送前往 InterContinental Danang（車程約 45 分）</div>
+        <li><div class="tl-time">17:15</div><div class="tl-text">專車前往 <span class="spot">InterContinental Danang</span></div>
+          <div class="tl-drive">車程 約 45 分</div>
           <div class="place">
             <div class="place-img">
               <span class="ph-label">InterContinental Danang<small>Sơn Trà Peninsula</small></span>
@@ -445,32 +451,32 @@
             </div>
             <h4>InterContinental Danang Sun Peninsula Resort</h4>
             <p class="one-liner">住的就是風景。山茶半島上的度假村，值得你哪都不去，待好待滿。</p>
-            <button class="map-btn" data-place="InterContinental Danang Sun Peninsula Resort">開啟地圖</button>
+            <button class="map-btn" data-place="InterContinental Danang Sun Peninsula Resort">Map</button>
           </div>
         </li>
         <li><div class="tl-time">18:00</div><div class="tl-text">Check-in、整理行李</div></li>
-        <li><div class="tl-time">18:30–19:15</div><div class="tl-text">Club Lounge evening cocktails &amp; canapés
+        <li><div class="tl-time">18:30–19:15</div><div class="tl-text"><span class="spot">Club Lounge</span> evening cocktails &amp; canapés
           <span class="tl-tip"><b>Lounge</b>　一杯迎賓酒微醺一下，輕食就好，胃口留給 Citron。</span></div>
           <div class="place">
             <div class="place-img"><span class="ph-label">Club InterContinental<small>IHG Lounge</small></span></div>
             <h4>Club InterContinental</h4>
             <p class="one-liner">一杯迎賓酒的好去處，從午後下午茶喝到傍晚調酒。</p>
-            <button class="map-btn" data-place="Club InterContinental Danang">開啟地圖</button>
+            <button class="map-btn" data-place="Club InterContinental Danang">Map</button>
           </div>
         </li>
-        <li><div class="tl-time">19:30</div><div class="tl-text">Citron 晚餐（斗笠海景包廂）</div>
+        <li><div class="tl-time">19:30</div><div class="tl-text">在 <span class="spot">Citron</span> 吃第一頓晚餐，斗笠包廂望著海灣</div>
           <div class="place">
             <div class="place-img"><span class="ph-label">Citron<small>Vietnamese Cuisine</small></span></div>
             <h4>Citron</h4>
             <p class="one-liner">斗笠造型的包廂懸在海灣上，第一晚就值得這麼浪漫。</p>
             <p class="meta">斗笠海景包廂、註明蜜月。</p>
-            <button class="map-btn" data-place="Citron InterContinental Danang">開啟地圖</button>
+            <button class="map-btn" data-place="Citron InterContinental Danang">Map</button>
           </div>
           <div class="place">
             <div class="place-img"><span class="ph-label">Terra Mare<small>Seaside Italian</small></span></div>
             <h4>Terra Mare</h4>
             <p class="one-liner">腳邊就是海的義式餐廳，想吹點海風時來這。</p>
-            <button class="map-btn" data-place="Terra Mare InterContinental Danang">開啟地圖</button>
+            <button class="map-btn" data-place="Terra Mare InterContinental Danang">Map</button>
           </div>
         </li>
       </ul>
@@ -493,35 +499,35 @@
 
       <ul class="timeline">
         <li><div class="tl-time">上午</div><div class="tl-text">睡到自然醒、飯店早餐，不趕</div></li>
-        <li><div class="tl-time">出發</div><div class="tl-text">早上或午後出發前往峴港市區（半島↔市區約 30–40 分；市區各點約 10–15 分）</div></li>
-        <li><div class="tl-time">市區 ①</div><div class="tl-text">Mì Quảng 薑黃寬麵（峴港招牌）</div>
+        <li><div class="tl-time">出發</div><div class="tl-text">早上或午後出發，慢慢晃進峴港市區</div><div class="tl-drive">半島往市區 約 30–40 分 · 市區點與點 約 10–15 分</div></li>
+        <li><div class="tl-time">市區 ①</div><div class="tl-text">先來碗 <span class="spot">Mì Quảng</span> 薑黃寬麵，峴港的招牌味</div>
           <div class="place">
             <div class="place-img"><span class="ph-label">Mì Quảng<small>Da Nang Signature Noodle</small></span></div>
             <h4>Mì Quảng</h4>
             <p class="one-liner">峴港的味道，從這碗開始。薑黃寬麵溫潤不燙，夏天剛剛好。</p>
             <p class="meta">推薦 Mì Quảng Bà Mua；點豬肉蝦或雞肉，配蝦餅與生菜。</p>
-            <button class="map-btn" data-place="Mì Quảng Bà Mua Da Nang">開啟地圖</button>
+            <button class="map-btn" data-place="Mì Quảng Bà Mua Da Nang">Map</button>
           </div>
         </li>
-        <li><div class="tl-time">市區 ②</div><div class="tl-text">Cộng Cà Phê Bạch Đằng 椰子咖啡、冷氣休息</div>
+        <li><div class="tl-time">市區 ②</div><div class="tl-text"><span class="spot">Cộng Cà Phê</span> 椰子咖啡，吹冷氣歇一下</div>
           <div class="place">
             <div class="place-img"><span class="ph-label">Cộng Cà Phê<small>Coconut Coffee</small></span></div>
             <h4>Cộng Cà Phê Bạch Đằng</h4>
             <p class="one-liner">一杯椰香冰沙咖啡配冷氣，城市散步的最佳中場。</p>
             <p class="meta">招牌椰子咖啡、越南煉乳咖啡。</p>
-            <button class="map-btn" data-place="Cộng Cà Phê Bạch Đằng Da Nang">開啟地圖</button>
+            <button class="map-btn" data-place="Cộng Cà Phê Bạch Đằng Da Nang">Map</button>
           </div>
         </li>
-        <li><div class="tl-time">市區 ③</div><div class="tl-text">Bếp Cuốn 坐下來的越式料理</div>
+        <li><div class="tl-time">市區 ③</div><div class="tl-text"><span class="spot">Bếp Cuốn</span>，坐下來慢慢吃越式卷</div>
           <div class="place">
             <div class="place-img"><span class="ph-label">Bếp Cuốn<small>Michelin Selected</small></span></div>
             <h4>Bếp Cuốn</h4>
             <p class="one-liner">米其林指南選上的小館，坐下來慢慢捲，把這天收得剛剛好。</p>
             <p class="meta">招牌 Mẹt Bếp Cuốn 拼盤、越式卷類。</p>
-            <button class="map-btn" data-place="Bếp Cuốn 31-33 Trần Bạch Đằng Da Nang">開啟地圖</button>
+            <button class="map-btn" data-place="Bếp Cuốn 31-33 Trần Bạch Đằng Da Nang">Map</button>
           </div>
         </li>
-        <li><div class="tl-time">傍晚</div><div class="tl-text">Da Nang Cathedral / Pink Church 外觀拍照（17:00–18:00 光線最美也較涼）</div>
+        <li><div class="tl-time">傍晚</div><div class="tl-text">傍晚的 <span class="spot">粉紅教堂</span>，外觀拍幾張，17:00–18:00 的光最美</div>
           <div class="place">
             <div class="place-img">
               <span class="ph-label">Da Nang Cathedral<small>Pink Church</small></span>
@@ -530,17 +536,17 @@
             </div>
             <h4>Da Nang Cathedral / Pink Church</h4>
             <p class="one-liner">一抹粉紅的法式教堂，傍晚的光最上鏡。</p>
-            <button class="map-btn" data-place="Da Nang Cathedral Pink Church">開啟地圖</button>
+            <button class="map-btn" data-place="Da Nang Cathedral Pink Church">Map</button>
           </div>
         </li>
-        <li><div class="tl-time">回程</div><div class="tl-text">傍晚回飯店（車程約 30–40 分）；或市區簡單晚餐後再回</div></li>
+        <li><div class="tl-time">回程</div><div class="tl-text">傍晚回飯店，或在市區簡單吃了再回</div><div class="tl-drive">車程 約 30–40 分</div></li>
         <li><div class="tl-time">回飯店後</div><div class="tl-text">泳池、SPA、海邊、睡午覺</div></li>
-        <li><div class="tl-time">晚上</div><div class="tl-text">飯店內輕鬆吃（Terra Mare / Long Bar），或不吃正式晚餐</div>
+        <li><div class="tl-time">晚上</div><div class="tl-text">回飯店在 <span class="spot">Terra Mare</span> 或 <span class="spot">Long Bar</span> 輕鬆吃，或乾脆不吃正式晚餐</div>
           <div class="place">
             <div class="place-img"><span class="ph-label">Long Bar<small>Resort Bar</small></span></div>
             <h4>Long Bar</h4>
             <p class="one-liner">不想正經吃飯的夜晚，來這裡小酌一杯。</p>
-            <button class="map-btn" data-place="Long Bar InterContinental Danang">開啟地圖</button>
+            <button class="map-btn" data-place="Long Bar InterContinental Danang">Map</button>
           </div>
         </li>
       </ul>
@@ -566,21 +572,21 @@
       <ul class="timeline">
         <li><div class="tl-time">08:30–10:30</div><div class="tl-text">飯店早餐，睡晚一點</div></li>
         <li><div class="tl-time">11:00–14:00</div><div class="tl-text">飯店泳池、海邊、房間休息</div></li>
-        <li><div class="tl-time">14:30–15:05</div><div class="tl-text">Club Lounge afternoon tea
+        <li><div class="tl-time">14:30–15:05</div><div class="tl-text"><span class="spot">Club Lounge</span> afternoon tea
           <span class="tl-tip"><b>Lounge</b>　出發前的小歇，墊個底剛剛好。</span></div></li>
-        <li><div class="tl-time">15:30</div><div class="tl-text">搭已訂接送前往會安（車程約 1–1.5 小時）</div></li>
-        <li><div class="tl-time">17:00</div><div class="tl-text">抵達會安，先喝飲料或慢慢散步</div></li>
-        <li><div class="tl-time">18:00</div><div class="tl-text">Morning Glory Signature 晚餐（道地越南菜）</div>
+        <li><div class="tl-time">15:30</div><div class="tl-text">專車出發前往 <span class="spot">會安</span></div><div class="tl-drive">車程 約 1–1.5 小時</div></li>
+        <li><div class="tl-time">17:00</div><div class="tl-text">抵達會安，先喝杯飲料、慢慢散步</div></li>
+        <li><div class="tl-time">18:00</div><div class="tl-text">在 <span class="spot">Morning Glory Signature</span> 享用道地越南晚餐</div>
           <div class="place">
             <div class="place-img"><span class="ph-label">Morning Glory Signature<small>Authentic Vietnamese · Ms Vy</small></span></div>
             <h4>Morning Glory Signature</h4>
             <p class="one-liner">Ms Vy 的招牌店，最道地的會安家常味；河岸座位，吃完散步就是滿街燈籠。</p>
             <p class="meta">招牌 Cao lầu、White Rose 白玫瑰蝦餃、炸雲吞、烤肉串。</p>
             <p class="meta"><span class="booking-yes">已訂 18:00 · balcony 河景位 · 蜜月</span>　41 Nguyễn Phúc Chu, An Hội</p>
-            <button class="map-btn" data-place="Morning Glory Signature Hoi An">開啟地圖</button>
+            <button class="map-btn" data-place="Morning Glory Signature Hoi An">Map</button>
           </div>
         </li>
-        <li><div class="tl-time">19:30–20:45</div><div class="tl-text">Hoi An Ancient Town、燈籠、河邊散步</div>
+        <li><div class="tl-time">19:30–20:45</div><div class="tl-text"><span class="spot">會安古鎮</span>，看燈籠、沿著河邊散步</div>
           <div class="place">
             <div class="place-img">
               <span class="ph-label">Hoi An Ancient Town<small>Lanterns &amp; Riverside</small></span>
@@ -589,10 +595,10 @@
             </div>
             <h4>Hoi An Ancient Town</h4>
             <p class="one-liner">燈籠一盞盞亮起，河面映著光——會安的夜，適合慢慢走。</p>
-            <button class="map-btn" data-place="Hoi An Ancient Town">開啟地圖</button>
+            <button class="map-btn" data-place="Hoi An Ancient Town">Map</button>
           </div>
         </li>
-        <li><div class="tl-time">21:00–21:30</div><div class="tl-text">於約定接送點搭回程接送返回飯店（車程約 1 小時）</div></li>
+        <li><div class="tl-time">21:00–21:30</div><div class="tl-text">在約定接送點上車，返回飯店</div><div class="tl-drive">車程 約 1 小時</div></li>
         <li><div class="tl-time">22:00 前後</div><div class="tl-text">回飯店休息</div></li>
       </ul>
     </article>
@@ -615,25 +621,25 @@
       <ul class="timeline">
         <li><div class="tl-time">上午</div><div class="tl-text">睡晚一點、飯店早餐</div></li>
         <li><div class="tl-time">11:00–13:00</div><div class="tl-text">海邊、泳池、飯店散步</div></li>
-        <li><div class="tl-time">14:30–16:30</div><div class="tl-text">HARNN Heritage Spa（飯店內）或房間休息</div>
+        <li><div class="tl-time">14:30–16:30</div><div class="tl-text"><span class="spot">HARNN Heritage Spa</span> 或回房間賴著</div>
           <div class="place">
             <div class="place-img"><span class="ph-label">Spa<small>Relax before dinner</small></span></div>
             <h4>SPA</h4>
             <p class="one-liner">晚餐前，先把自己交給按摩。HARNN 雙人療程，記得註明蜜月。</p>
-            <button class="map-btn" data-place="InterContinental Danang HARNN Heritage Spa">開啟地圖</button>
-            <p class="meta" style="margin-top:10px;"><b>想搭配進城／會安：</b>My Khe 一帶順路，推薦 Golden Lotus 或 Herbal Spa（皆可雙人、含接送）。</p>
+            <button class="map-btn" data-place="InterContinental Danang HARNN Heritage Spa">Map</button>
+            <p class="meta" style="margin-top:10px;">想搭配進城或會安，My Khe 一帶順路，推薦 Golden Lotus 或 Herbal Spa。</p>
             <button class="map-btn" data-place="Golden Lotus Oriental Organic Spa 63 Hà Bổng Da Nang">Golden Lotus</button>
             <button class="map-btn" data-place="Herbal Spa Da Nang Duong Dinh Nghe">Herbal Spa</button>
           </div>
         </li>
-        <li><div class="tl-time">18:30</div><div class="tl-text">La Maison 1888 晚餐</div>
+        <li><div class="tl-time">18:30</div><div class="tl-text"><span class="spot">La Maison 1888</span> 晚餐，今晚的主角</div>
           <div class="place">
             <div class="place-img"><span class="ph-label">La Maison 1888<small>Michelin ★ French</small></span></div>
             <h4>La Maison 1888</h4>
             <p class="one-liner">藏在度假村裡的法式殿堂，這趟最盛裝、最浪漫的一夜。</p>
             <p class="meta"><b>Dress code：</b>男生襯衫／Polo、長褲、包鞋；女生洋裝或質感長褲。避免短褲、拖鞋、背心。</p>
             <p class="meta"><span class="booking-yes">已訂 18:30 · 2 位 · 蜜月</span></p>
-            <button class="map-btn" data-place="La Maison 1888 InterContinental Danang">開啟地圖</button>
+            <button class="map-btn" data-place="La Maison 1888 InterContinental Danang">Map</button>
           </div>
         </li>
         <li><div class="tl-time">晚上</div><div class="tl-text">飯店散步、回房</div></li>
@@ -660,7 +666,7 @@
       <ul class="timeline">
         <li><div class="tl-time">前一晚</div><div class="tl-text">整理行李、確認退房與送機</div></li>
         <li><div class="tl-time">06:30</div><div class="tl-text">起床、梳洗</div></li>
-        <li><div class="tl-time">07:15–07:30</div><div class="tl-text">送機前往機場（車程約 30–40 分，最晚 07:45）</div></li>
+        <li><div class="tl-time">07:15–07:30</div><div class="tl-text">專車送往機場，最晚 07:45 出發</div><div class="tl-drive">車程 約 30–40 分</div></li>
         <li><div class="tl-time">08:00</div><div class="tl-text">抵達機場，快速通關專人會合</div>
           <div class="place">
             <div class="place-img">
@@ -670,10 +676,10 @@
             </div>
             <h4>Da Nang International Airport</h4>
             <p class="one-liner">不趕，留多一點時間給機場，慢慢說再見。</p>
-            <button class="map-btn" data-place="Da Nang International Airport">開啟地圖</button>
+            <button class="map-btn" data-place="Da Nang International Airport">Map</button>
           </div>
         </li>
-        <li><div class="tl-time">08:30</div><div class="tl-text">商務艙貴賓室早餐、休息</div></li>
+        <li><div class="tl-time">08:30</div><div class="tl-text">在 <span class="spot">商務艙貴賓室</span> 吃早餐、歇會兒</div></li>
         <li><div class="tl-time">10:00</div><div class="tl-text">VN3588 起飛</div></li>
       </ul>
     </article>
