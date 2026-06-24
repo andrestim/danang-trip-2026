@@ -297,6 +297,14 @@
   .map-btn:active{background:var(--beige);}
   .map-btn::before{content:"📍";font-size:12px;opacity:.75;}
 
+  /* 複製地點名稱按鈕 */
+  .copy-btn{
+    margin-left:8px;border:1px solid var(--line);background:var(--cream-card);
+    color:var(--green-soft);cursor:pointer;font-size:11px;font-weight:500;
+    letter-spacing:.5px;padding:2px 9px;border-radius:999px;vertical-align:middle;
+  }
+  .copy-btn:active{background:var(--beige);}
+
   /* =========================================================
      Checklist
      ========================================================= */
@@ -375,7 +383,7 @@
 
 <!-- ========================= Hero / 封面 ========================= -->
 <header class="hero" id="top">
-  <div class="eyebrow">Danang</div>
+  <div class="eyebrow">Slow Trip</div>
   <h1>Danang &amp; Hoi An</h1>
   <p class="sub">InterContinental Danang<br>Jun 28 – Jul 2, 2026</p>
   <p class="names">Tim &amp; Yoona</p>
@@ -478,7 +486,6 @@
             <div class="place-img"><span class="ph-label">Citron<small>Vietnamese Cuisine</small></span></div>
             <h4>Citron</h4>
             <p class="one-liner">斗笠造型的包廂懸在海灣上，第一晚就值得這麼浪漫。</p>
-            <p class="meta">斗笠海景包廂、註明蜜月。</p>
             <button class="map-btn" data-place="Citron InterContinental Danang">Map</button>
           </div>
           <div class="place">
@@ -800,6 +807,27 @@
       var url = 'https://www.google.com/maps/search/?api=1&query=' +
                 encodeURIComponent(place);
       window.open(url, '_blank');
+    });
+  });
+
+  /* 複製地點名稱：方便貼到 Grab／Google 查詢 */
+  document.querySelectorAll('.place h4').forEach(function (h4) {
+    var name = h4.textContent.trim();
+    var btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'copy-btn'; btn.textContent = '複製';
+    h4.appendChild(btn);
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      function done() { btn.textContent = '已複製'; setTimeout(function () { btn.textContent = '複製'; }, 1200); }
+      function fallback() {
+        var t = document.createElement('textarea'); t.value = name;
+        document.body.appendChild(t); t.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(t); done();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(name).then(done, fallback);
+      } else { fallback(); }
     });
   });
 
