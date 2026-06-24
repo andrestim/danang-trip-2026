@@ -920,31 +920,64 @@
      ========================================================= */
   (function () {
     var IMG_PREFIX = 'danang2026-img-';
+    // 地點 → 檔名對照（把照片放在 images/<slug>.jpg，雙端皆可見）
+    var SLUGS = {
+      'InterContinental Danang Sun Peninsula Resort': 'resort',
+      'Club InterContinental': 'club-lounge',
+      'Citron': 'citron',
+      'Terra Mare': 'terra-mare',
+      'Da Nang Cathedral / Pink Church': 'cathedral',
+      'Mì Quảng': 'mi-quang',
+      'Cộng Cà Phê Bạch Đằng': 'cong-caphe',
+      'Bếp Cuốn': 'bep-cuon',
+      'Long Bar': 'long-bar',
+      'Hoi An Ancient Town': 'hoi-an',
+      'Morning Glory Signature': 'morning-glory',
+      'Mango Mango（備案）': 'mango-mango',
+      'La Maison 1888': 'la-maison',
+      'SPA': 'spa',
+      'Da Nang International Airport': 'airport'
+    };
     function slugify(s) {
-      return (s || '').trim().toLowerCase()
-        .replace(/[（(].*?[)）]/g, '')   // 去掉括號內容（如「備案」「第一晚晚餐」）
-        .replace(/[／/].*/, '')          // 取斜線前（如 Cathedral / Pink Church）
-        .replace(/\s+/g, '-').replace(/[^a-z0-9\-]+/g, '').slice(0, 40);
+      return (s || '').trim().toLowerCase().replace(/\s+/g, '-')
+        .replace(/[^a-z0-9\-]+/g, '').slice(0, 40);
     }
     document.querySelectorAll('.place-img').forEach(function (box) {
       var place = box.closest('.place');
       var h4 = place ? place.querySelector('h4') : null;
-      var key = IMG_PREFIX + slugify(h4 ? h4.textContent : 'x');
+      var name = h4 ? h4.textContent.trim() : '';
+      var slug = SLUGS[name] || slugify(name);
+      var key = IMG_PREFIX + slug;
 
-      // 確保有一個 <img>（風格化色塊的卡原本沒有）
+      // 確保有一個 <img>；記住原本的網路實景圖
       var img = box.querySelector('img');
+      var remoteDef = (img && img.getAttribute('src')) ? img.getAttribute('src') : '';
       if (!img) {
         img = document.createElement('img');
-        img.alt = h4 ? h4.textContent : '';
-        img.addEventListener('error', function () { img.style.display = 'none'; });
+        img.alt = name;
         box.insertBefore(img, box.firstChild);
-        img.style.display = 'none';
       }
-      if (img.getAttribute('src')) img.dataset.def = img.getAttribute('src'); // 記住預設圖
+      img.removeAttribute('onerror');
 
-      // 還原本機已存照片
+      // 顯示優先序：本機上傳 → images/<slug>.(jpg|jpeg|png) → 網路實景圖 → 色塊
+      function defaults() {
+        var list = ['images/' + slug + '.jpg', 'images/' + slug + '.jpeg', 'images/' + slug + '.png'];
+        if (remoteDef) list.push(remoteDef);
+        return list;
+      }
+      function show(srcs) {
+        var i = 0;
+        img.onerror = function () {
+          i++;
+          if (i < srcs.length) { img.src = srcs[i]; }
+          else { img.onerror = null; img.style.display = 'none'; }
+        };
+        img.onload = function () { img.style.display = 'block'; };
+        if (srcs.length) { img.src = srcs[0]; } else { img.style.display = 'none'; }
+      }
+
       var saved = localStorage.getItem(key);
-      if (saved) { img.src = saved; img.style.display = 'block'; }
+      show(saved ? [saved].concat(defaults()) : defaults());
 
       // 隱藏的檔案輸入（手機會開相簿／相機）
       var input = document.createElement('input');
@@ -965,11 +998,10 @@
       box.appendChild(rm);
       rm.addEventListener('click', function (e) {
         e.stopPropagation();
-        if (!confirm('移除這張照片？')) return;
+        if (!confirm('移除本機上傳的照片？（仍會顯示 images/ 內的照片）')) return;
         localStorage.removeItem(key);
-        if (img.dataset.def) { img.src = img.dataset.def; img.style.display = 'block'; }
-        else { img.removeAttribute('src'); img.style.display = 'none'; }
         edit.textContent = '＋ 照片'; rm.style.display = 'none';
+        show(defaults());
       });
 
       // 選好照片：縮圖到最寬 900px、JPEG 0.75，再存 localStorage
@@ -987,8 +1019,8 @@
             var data = c.toDataURL('image/jpeg', 0.75);
             try {
               localStorage.setItem(key, data);
-              img.src = data; img.style.display = 'block';
               edit.textContent = '✎ 換照片'; rm.style.display = 'block';
+              show([data]);
             } catch (err) {
               alert('照片太大、本機儲存空間已滿，請改用較小的照片，或先移除幾張。');
             }
