@@ -201,18 +201,10 @@
   .bp-divider::after{right:-8px;}
   .bp-foot{font-size:11.5px;color:var(--text-soft);letter-spacing:.5px;text-align:center;padding:11px 16px;background:var(--beige);}
 
-  /* 即時天氣 */
-  .wx-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;}
-  .wx-head h3{font-size:16px;color:var(--green);font-weight:600;}
-  .wx-now{font-size:13px;color:var(--brown);font-weight:600;letter-spacing:.3px;}
-  .wx-days{display:flex;gap:6px;}
-  .wx-day{flex:1;text-align:center;background:#fbf7ee;border:1px solid var(--line);border-radius:10px;padding:9px 3px;}
-  .wx-day .d{font-size:11px;color:var(--text-soft);}
-  .wx-day .ic{font-size:21px;margin:5px 0;line-height:1;}
-  .wx-day .t{font-size:12.5px;color:var(--brown);font-weight:600;}
-  .wx-day .t small{color:var(--text-soft);font-weight:400;}
-  .wx-day .r{font-size:10px;color:#5f86a0;margin-top:3px;}
-  .wx-note{font-size:11px;color:var(--text-soft);margin:10px 0 0;text-align:right;letter-spacing:.5px;}
+  /* 即時天氣（總覽每日列右側） */
+  table.overview td.wx-cell{white-space:nowrap;text-align:right;color:var(--brown);font-size:12.5px;font-weight:600;}
+  table.overview td.wx-cell .wi{font-size:15px;}
+  table.overview td.wx-cell small{color:var(--text-soft);font-weight:400;}
 
   /* 每日主題 grid */
   .theme-grid{display:grid;gap:10px;}
@@ -474,19 +466,13 @@
     <div class="card">
       <table class="overview">
         <tbody>
-          <tr><td>6/28 日</td><td>抵達峴港 · Club Lounge · Citron 晚餐</td></tr>
-          <tr><td>6/29 一</td><td>粉紅教堂 · 薑黃寬麵 · 椰子咖啡 · 越式卷料理</td></tr>
-          <tr><td>6/30 二</td><td>飯店放鬆 · 會安古鎮 · Morning Glory 晚餐</td></tr>
-          <tr><td>7/1 三</td><td>海邊泳池 · HARNN Spa · La Maison 1888</td></tr>
-          <tr><td>7/2 四</td><td>商務艙貴賓室早餐 · 返台</td></tr>
+          <tr><td>6/28 日</td><td>抵達峴港 · Club Lounge · Citron 晚餐</td><td class="wx-cell" data-date="2026-06-28">–</td></tr>
+          <tr><td>6/29 一</td><td>粉紅教堂 · 薑黃寬麵 · 椰子咖啡 · 越式卷料理</td><td class="wx-cell" data-date="2026-06-29">–</td></tr>
+          <tr><td>6/30 二</td><td>飯店放鬆 · 會安古鎮 · Morning Glory 晚餐</td><td class="wx-cell" data-date="2026-06-30">–</td></tr>
+          <tr><td>7/1 三</td><td>海邊泳池 · HARNN Spa · La Maison 1888</td><td class="wx-cell" data-date="2026-07-01">–</td></tr>
+          <tr><td>7/2 四</td><td>商務艙貴賓室早餐 · 返台</td><td class="wx-cell" data-date="2026-07-02">–</td></tr>
         </tbody>
       </table>
-    </div>
-
-    <div class="card">
-      <div class="wx-head"><h3>峴港天氣</h3><span class="wx-now" id="wxNow">載入中…</span></div>
-      <div class="wx-days" id="wxDays"></div>
-      <p class="wx-note">即時資料 · Open-Meteo</p>
     </div>
   </section>
 
@@ -966,44 +952,34 @@
   });
 
   /* =========================================================
-     6) 即時天氣（Open-Meteo，免金鑰；需連網）
+     6) 即時天氣（Open-Meteo，免金鑰；需連網）：填入總覽每日列
      ========================================================= */
   (function () {
-    var TRIP = ['2026-06-28', '2026-06-29', '2026-06-30', '2026-07-01', '2026-07-02'];
-    var WD = ['日', '一', '二', '三', '四', '五', '六'];
     function wmo(c) {
-      if (c === 0) return ['☀️', '晴'];
-      if (c === 1 || c === 2) return ['🌤️', '多雲'];
-      if (c === 3) return ['☁️', '陰'];
-      if (c === 45 || c === 48) return ['🌫️', '霧'];
-      if (c >= 51 && c <= 57) return ['🌦️', '毛毛雨'];
-      if (c >= 61 && c <= 67) return ['🌧️', '雨'];
-      if (c >= 71 && c <= 77) return ['🌨️', '雪'];
-      if (c >= 80 && c <= 82) return ['🌦️', '陣雨'];
-      if (c >= 85 && c <= 86) return ['🌨️', '陣雪'];
-      if (c >= 95) return ['⛈️', '雷雨'];
-      return ['🌡️', '—'];
+      if (c === 0) return '☀️';
+      if (c === 1 || c === 2) return '🌤️';
+      if (c === 3) return '☁️';
+      if (c === 45 || c === 48) return '🌫️';
+      if (c >= 51 && c <= 57) return '🌦️';
+      if (c >= 61 && c <= 67) return '🌧️';
+      if (c >= 71 && c <= 77) return '🌨️';
+      if (c >= 80 && c <= 82) return '🌦️';
+      if (c >= 85 && c <= 86) return '🌨️';
+      if (c >= 95) return '⛈️';
+      return '🌡️';
     }
-    var now = document.getElementById('wxNow'), days = document.getElementById('wxDays');
-    if (!now || !days) return;
-    var url = 'https://api.open-meteo.com/v1/forecast?latitude=16.0678&longitude=108.2208&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FHo_Chi_Minh&forecast_days=16';
+    var cells = document.querySelectorAll('.wx-cell');
+    if (!cells.length) return;
+    var url = 'https://api.open-meteo.com/v1/forecast?latitude=16.0678&longitude=108.2208&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FHo_Chi_Minh&forecast_days=16';
     fetch(url).then(function (r) { return r.json(); }).then(function (d) {
-      var ci = wmo(d.current.weather_code);
-      now.textContent = '現在 ' + Math.round(d.current.temperature_2m) + '° ' + ci[0] + ' ' + ci[1];
-      var t = d.daily.time, html = '';
-      TRIP.forEach(function (date) {
-        var i = t.indexOf(date);
-        var md = date.slice(5).replace('-', '/');
-        var w = WD[new Date(date + 'T00:00').getDay()];
-        if (i < 0) { html += '<div class="wx-day"><div class="d">' + md + ' ' + w + '</div><div class="ic">–</div><div class="t">—</div></div>'; return; }
-        var ic = wmo(d.daily.weather_code[i]);
+      var t = d.daily.time;
+      cells.forEach(function (cell) {
+        var i = t.indexOf(cell.getAttribute('data-date'));
+        if (i < 0) { cell.textContent = '–'; return; }
         var hi = Math.round(d.daily.temperature_2m_max[i]), lo = Math.round(d.daily.temperature_2m_min[i]);
-        var rain = d.daily.precipitation_probability_max[i];
-        html += '<div class="wx-day"><div class="d">' + md + ' ' + w + '</div><div class="ic">' + ic[0] +
-          '</div><div class="t">' + hi + '°<small>/' + lo + '°</small></div><div class="r">☔ ' + (rain == null ? '–' : rain + '%') + '</div></div>';
+        cell.innerHTML = '<span class="wi">' + wmo(d.daily.weather_code[i]) + '</span> ' + hi + '°<small>/' + lo + '°</small>';
       });
-      days.innerHTML = html;
-    }).catch(function () { now.textContent = '天氣載入失敗（需連網）'; });
+    }).catch(function () {});
   })();
 </script>
 </body>
