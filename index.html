@@ -203,7 +203,7 @@
 
   /* 即時天氣（總覽每日列右側） */
   table.overview td.wx-cell{white-space:nowrap;text-align:right;color:var(--brown);font-size:12.5px;font-weight:600;}
-  table.overview td.wx-cell .wi{font-size:15px;}
+  table.overview td.wx-cell .wi{display:inline-block;vertical-align:-3px;color:var(--brown);}
   table.overview td.wx-cell small{color:var(--text-soft);font-weight:400;}
 
   /* 每日主題 grid */
@@ -955,18 +955,26 @@
      6) 即時天氣（Open-Meteo，免金鑰；需連網）：填入總覽每日列
      ========================================================= */
   (function () {
+    var S = '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">';
+    var ICN = {
+      sun: S + '<circle cx="12" cy="12" r="3.6"/><path d="M12 2.6v2.3M12 19.1v2.3M4.3 12H2M22 12h-2.3M5.6 5.6 4 4M20 20l-1.6-1.6M18.4 5.6 20 4M4 20l1.6-1.6"/></svg>',
+      partly: S + '<circle cx="8" cy="7.5" r="2.7"/><path d="M8 1.8v1.4M3.3 7.5H1.9M4.5 4 3.5 3M11.6 4l1-1"/><path d="M7 19h9a3 3 0 0 0 .2-6A4.2 4.2 0 0 0 8.6 11.6 3.2 3.2 0 0 0 7 19z"/></svg>',
+      cloud: S + '<path d="M7 18h9a3.2 3.2 0 0 0 .2-6.4A4.5 4.5 0 0 0 7.6 10 3.4 3.4 0 0 0 7 18z"/></svg>',
+      fog: S + '<path d="M4 9h16M4 13h16M6 17h12"/></svg>',
+      drizzle: S + '<path d="M7 14h9a3.2 3.2 0 0 0 .2-6.4A4.5 4.5 0 0 0 7.6 6 3.4 3.4 0 0 0 7 14z"/><path d="M9 17l-.6 1.6M12.5 17l-.6 1.6"/></svg>',
+      rain: S + '<path d="M7 13h9a3.2 3.2 0 0 0 .2-6.4A4.5 4.5 0 0 0 7.6 5 3.4 3.4 0 0 0 7 13z"/><path d="M8.5 16l-1 2.6M12 16l-1 2.6M15.5 16l-1 2.6"/></svg>',
+      storm: S + '<path d="M7 13h9a3.2 3.2 0 0 0 .2-6.4A4.5 4.5 0 0 0 7.6 5 3.4 3.4 0 0 0 7 13z"/><path d="M12.6 14.5l-2.1 3.3h2.3L10.9 21.5"/></svg>'
+    };
     function wmo(c) {
-      if (c === 0) return '☀️';
-      if (c === 1 || c === 2) return '🌤️';
-      if (c === 3) return '☁️';
-      if (c === 45 || c === 48) return '🌫️';
-      if (c >= 51 && c <= 57) return '🌦️';
-      if (c >= 61 && c <= 67) return '🌧️';
-      if (c >= 71 && c <= 77) return '🌨️';
-      if (c >= 80 && c <= 82) return '🌦️';
-      if (c >= 85 && c <= 86) return '🌨️';
-      if (c >= 95) return '⛈️';
-      return '🌡️';
+      if (c === 0) return ICN.sun;
+      if (c === 1 || c === 2) return ICN.partly;
+      if (c === 3) return ICN.cloud;
+      if (c === 45 || c === 48) return ICN.fog;
+      if (c >= 51 && c <= 57) return ICN.drizzle;
+      if (c >= 61 && c <= 67) return ICN.rain;
+      if (c >= 80 && c <= 82) return ICN.rain;
+      if (c >= 95) return ICN.storm;
+      return ICN.cloud;
     }
     var cells = document.querySelectorAll('.wx-cell');
     if (!cells.length) return;
@@ -979,7 +987,7 @@
         var hi = Math.round(d.daily.temperature_2m_max[i]), lo = Math.round(d.daily.temperature_2m_min[i]);
         var rain = d.daily.precipitation_probability_max[i];
         cell.innerHTML = '<span class="wi">' + wmo(d.daily.weather_code[i]) + '</span> ' + hi + '°<small>/' + lo + '°</small>' +
-          '<br><small>☔ ' + (rain == null ? '–' : rain + '%') + '</small>';
+          '<br><small>降雨 ' + (rain == null ? '–' : rain + '%') + '</small>';
       });
     }).catch(function () {});
   })();
