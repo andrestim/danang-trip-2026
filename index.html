@@ -970,14 +970,16 @@
     }
     var cells = document.querySelectorAll('.wx-cell');
     if (!cells.length) return;
-    var url = 'https://api.open-meteo.com/v1/forecast?latitude=16.0678&longitude=108.2208&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FHo_Chi_Minh&forecast_days=16';
+    var url = 'https://api.open-meteo.com/v1/forecast?latitude=16.0678&longitude=108.2208&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Asia%2FHo_Chi_Minh&forecast_days=16';
     fetch(url).then(function (r) { return r.json(); }).then(function (d) {
       var t = d.daily.time;
       cells.forEach(function (cell) {
         var i = t.indexOf(cell.getAttribute('data-date'));
         if (i < 0) { cell.textContent = '–'; return; }
         var hi = Math.round(d.daily.temperature_2m_max[i]), lo = Math.round(d.daily.temperature_2m_min[i]);
-        cell.innerHTML = '<span class="wi">' + wmo(d.daily.weather_code[i]) + '</span> ' + hi + '°<small>/' + lo + '°</small>';
+        var rain = d.daily.precipitation_probability_max[i];
+        cell.innerHTML = '<span class="wi">' + wmo(d.daily.weather_code[i]) + '</span> ' + hi + '°<small>/' + lo + '°</small>' +
+          '<br><small>☔ ' + (rain == null ? '–' : rain + '%') + '</small>';
       });
     }).catch(function () {});
   })();
