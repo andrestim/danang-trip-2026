@@ -334,6 +334,10 @@
   }
   .copy-btn:active{opacity:.5;}
 
+  /* 可點擊開地圖的店名 */
+  .skip-item .maplink{color:var(--green-soft);font-weight:600;cursor:pointer;border-bottom:1px solid var(--gold-soft);}
+  .skip-item .maplink:active{opacity:.6;}
+
   /* =========================================================
      Checklist
      ========================================================= */
@@ -759,28 +763,28 @@
     <div class="skip-item">
       <h4>市區海鮮・口袋名單</h4>
       <p>新鮮又便宜，蝦蟹龍蝦現點現煮；偏熱鬧大排檔、份量適合多人。想吃就挑一晚：</p>
-      <p><b>Bé Mặn</b>　海邊路上的人氣老店，現選現煮、份量大方。</p>
-      <p><b>Bé Anh</b>　在地熱門，價格實在、海鮮種類多。</p>
-      <p><b>Cua Biển</b>　以螃蟹聞名，環境比大排檔精緻一些。</p>
+      <p><span class="maplink" data-place="Bé Mặn Seafood Da Nang">Bé Mặn</span>　海邊路上的人氣老店，現選現煮、份量大方。</p>
+      <p><span class="maplink" data-place="Bé Anh Seafood Da Nang">Bé Anh</span>　在地熱門，價格實在、海鮮種類多。</p>
+      <p><span class="maplink" data-place="Cua Biển Restaurant Da Nang">Cua Biển</span>　以螃蟹聞名，環境比大排檔精緻一些。</p>
     </div>
 
     <div class="skip-item">
       <h4>市區小吃・其他選擇</h4>
       <p>Day 2 的「市區 A」除了 Mì Quảng，也可換成這些峴港在地小吃：</p>
-      <p><b>Bánh xèo &amp; Nem lụi</b>　越式煎餅＋烤肉串，自己捲生菜香草；名店 Bà Dưỡng。</p>
-      <p><b>Bún thịt nướng</b>　烤肉米線，無熱湯、最清爽消暑。</p>
-      <p><b>Bún chả cá</b>　魚餅米粉湯，峴港代表味（Bà Lữ、109 Nguyễn Chí Thanh）。</p>
-      <p><b>Bánh mì</b>　越式法國麵包，可邊走邊吃（Bà Lan）。</p>
-      <p><b>Bún bò Huế</b>　順化牛肉米線，香茅辣香、重口味。</p>
+      <p><span class="maplink" data-place="Bánh xèo Bà Dưỡng Da Nang">Bánh xèo &amp; Nem lụi</span>　越式煎餅＋烤肉串，自己捲生菜香草；名店 Bà Dưỡng。</p>
+      <p><span class="maplink" data-place="Bún thịt nướng Da Nang">Bún thịt nướng</span>　烤肉米線，無熱湯、最清爽消暑。</p>
+      <p><span class="maplink" data-place="Bún chả cá Bà Lữ Da Nang">Bún chả cá</span>　魚餅米粉湯，峴港代表味（Bà Lữ、109 Nguyễn Chí Thanh）。</p>
+      <p><span class="maplink" data-place="Bánh mì Bà Lan Da Nang">Bánh mì</span>　越式法國麵包，可邊走邊吃（Bà Lan）。</p>
+      <p><span class="maplink" data-place="Bún bò Huế Da Nang">Bún bò Huế</span>　順化牛肉米線，香茅辣香、重口味。</p>
     </div>
 
     <div class="skip-item">
       <h4>會安咖啡・室內歇腳</h4>
       <p>逛累了、或遇上陣雨，找一家坐下來喝杯越式咖啡、等雨停：</p>
-      <p><b>Reaching Out Tea House</b>　Trần Phú 上的「無聲茶屋」，由聽障夥伴經營，安靜雅致，室內最療癒。</p>
-      <p><b>Hoi An Roastery</b>　古鎮裡的人氣咖啡品牌，木質懷舊空間、多家分店，舒適可久坐。</p>
-      <p><b>Mia Coffee</b>　精品咖啡，有冷氣的二樓座位，躲熱躲雨都好。</p>
-      <p><b>Faifo Coffee</b>　頂樓俯瞰古鎮屋瓦，最好拍——適合放晴時上去。</p>
+      <p><span class="maplink" data-place="Reaching Out Tea House Hoi An">Reaching Out Tea House</span>　Trần Phú 上的「無聲茶屋」，由聽障夥伴經營，安靜雅致，室內最療癒。</p>
+      <p><span class="maplink" data-place="Hoi An Roastery">Hoi An Roastery</span>　古鎮裡的人氣咖啡品牌，木質懷舊空間、多家分店，舒適可久坐。</p>
+      <p><span class="maplink" data-place="Mia Coffee Hoi An">Mia Coffee</span>　精品咖啡，有冷氣的二樓座位，躲熱躲雨都好。</p>
+      <p><span class="maplink" data-place="Faifo Coffee Hoi An">Faifo Coffee</span>　頂樓俯瞰古鎮屋瓦，最好拍——適合放晴時上去。</p>
     </div>
     <div class="skip-item">
       <h4>椰林竹籃船 Cẩm Thanh</h4>
@@ -790,11 +794,11 @@
 
     <div class="skip-item">
       <h4>峴港高級 SPA・口袋名單</h4>
-      <p>飯店內 <b>HARNN Heritage Spa</b> 為首選；想搭配進城或會安，My Khe 一帶順路：</p>
-      <p><b>Golden Lotus</b>　20 年品牌、有機調理，環境精緻。</p>
-      <p><b>Herbal Spa</b>　TripAdvisor 峴港第一，四手按摩有名。</p>
-      <p><b>Nguôn Spa</b>　竹林設計，最有氛圍。</p>
-      <p><b>Oani Spa</b>　精緻小店，有中文服務。</p>
+      <p>飯店內 <span class="maplink" data-place="InterContinental Danang HARNN Heritage Spa">HARNN Heritage Spa</span> 為首選；想搭配進城或會安，My Khe 一帶順路：</p>
+      <p><span class="maplink" data-place="Golden Lotus Oriental Organic Spa Da Nang">Golden Lotus</span>　20 年品牌、有機調理，環境精緻。</p>
+      <p><span class="maplink" data-place="Herbal Spa Da Nang">Herbal Spa</span>　TripAdvisor 峴港第一，四手按摩有名。</p>
+      <p><span class="maplink" data-place="Nguồn Spa Da Nang">Nguôn Spa</span>　竹林設計，最有氛圍。</p>
+      <p><span class="maplink" data-place="Oani Spa Da Nang">Oani Spa</span>　精緻小店，有中文服務。</p>
     </div>
   </section>
 
@@ -855,6 +859,14 @@
       var url = 'https://www.google.com/maps/search/?api=1&query=' +
                 encodeURIComponent(place);
       window.open(url, '_blank');
+    });
+  });
+
+  /* Optional 清單裡可點擊開地圖的店名 */
+  document.querySelectorAll('.maplink').forEach(function (el) {
+    el.addEventListener('click', function () {
+      var q = el.getAttribute('data-place') || el.textContent;
+      window.open('https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q), '_blank');
     });
   });
 
